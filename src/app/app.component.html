@@ -1,0 +1,25 @@
+<header>
+  <nav>
+    <div class="logo"><a href="/">FormBuilder</a></div>
+    <ul>
+      <li *ngIf="!loggedIn">
+        <a href="/login">Login</a>
+      </li>
+      <li *ngIf="loggedIn">
+        <a href="/logout" (click)="logout($event)">Logout</a>
+      </li>
+
+      <li>
+        <a href="registration">Registration</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<div class="main">
+  <router-outlet></router-outlet>
+</div>
+
+<footer>
+  <p>Copyright &copy; 2021. All Rights Reserved.</p>
+</footer>
