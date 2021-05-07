@@ -172,6 +172,7 @@ export class FormBuilderComponent {
 
     containerElem.remove();
     this.deleteElemFromBasket(elemId);
+    this.targetStore.dispatch(new SetTargetElemAction({ id: null }));
   }
 
   addElemToBasket(event: CdkDragDrop<any[]>, containerID: number): void {
