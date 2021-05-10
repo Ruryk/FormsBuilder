@@ -11,7 +11,7 @@ export enum EParamsNames {
    Required = 'required',
    Text = 'text',
    Type = 'type',
-   Label = "label",
+   Label = 'label',
    Name = 'name',
    Value = 'value',
    Options = 'options',
@@ -29,7 +29,7 @@ export enum EStylesNames {
    FontSize = 'fontSize',
    FontWeight = 'fontWeight',
    BackgroundColor = 'backgroundColor',
-   MinHeight = "minHeight",
+   MinHeight = 'minHeight',
    FlexDirection = 'flexDirection',
    AlignItems = 'alignItems',
    JustifyContent = 'justifyContent'

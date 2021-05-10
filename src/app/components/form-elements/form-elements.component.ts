@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import { IListElements } from "../../data/interfaces";
-import { CListStandartParams } from "../../data/constantes";
-import { EBuilderElements } from "../../data/enums";
+import { IListElements } from '../../data/interfaces';
+import { CListStandartParams } from '../../data/constantes';
+import { EBuilderElements } from '../../data/enums';
 
 @Component({
   selector: 'app-form-elements',
@@ -17,10 +17,10 @@ export class FormElementsComponent {
   public paramsList = CListStandartParams;
 
   public listElements: IListElements[] = [
-    { text: "Button", character: "button" },
-    { text: "Input", character: "input" },
-    { text: "TextArea", character: "textarea" },
-    { text: "Select", character: "select" },
-    { text: "CheckBox", character: "checkbox" }
+    { text: 'Button', character: 'button' },
+    { text: 'Input', character: 'input' },
+    { text: 'TextArea', character: 'textarea' },
+    { text: 'Select', character: 'select' },
+    { text: 'CheckBox', character: 'checkbox' }
   ];
 }

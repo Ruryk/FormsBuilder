@@ -2,12 +2,9 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { IListFormStyleState, IListElemStyleState, ITargetId } from 'src/app/data/interfaces';
+import { getListParamsElems, getListParamsForm, getListParamsRows, getTargetElem, IStateRedusers } from 'src/app/reducers';
 
-import { selectParamsForm } from '../../reducers/formStyles/formStyles.selectors';
-import { selectParamsElem } from '../../reducers/elemStyles/elemStyles.selectors';
-import { selectParamsRow } from '../../reducers/rowStyles/rowStyles.selectors';
-import { selectElemId, selectRowId } from '../../reducers/target/target.selectors';
+import { getTargetRow } from "../../reducers";
 
 @Component({
   selector: 'app-main',
@@ -19,17 +16,14 @@ import { selectElemId, selectRowId } from '../../reducers/target/target.selector
 export class MainComponent implements OnInit {
 
   constructor(
-    private store: Store<IListElemStyleState>,
-    private formStore: Store<IListFormStyleState>,
-    private targetStore: Store<ITargetId>
+    private store: Store<IStateRedusers>
   ) { }
 
-  public listStylesElem$: Observable<string> = this.store.pipe(select(selectParamsElem));
-  public listStylesRow$: Observable<string> = this.store.pipe(select(selectParamsRow));
-  public listStylesForm$: Observable<string> = this.formStore.pipe(select(selectParamsForm));
-
-  public targetElemId: Observable<number> = this.targetStore.pipe(select(selectElemId));
-  public targetRowId: Observable<number> = this.targetStore.pipe(select(selectRowId));
+  public listStylesElem$: Observable<string> = this.store.pipe(select(getListParamsElems));
+  public listStylesRow$: Observable<string> = this.store.pipe(select(getListParamsRows));
+  public listStylesForm$: Observable<string> = this.store.pipe(select(getListParamsForm));
+  public targetElemId: Observable<number> = this.store.pipe(select(getTargetElem));
+  public targetRowId: Observable<number> = this.store.pipe(select(getTargetRow));
 
   public listStylesElem = [];
 

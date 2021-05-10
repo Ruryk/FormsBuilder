@@ -15,5 +15,4 @@ export class SetTargetRowAction implements Action {
    constructor(public payload: { id: number }) { }
 }
 
-export type TargetActions = SetTargetElemAction
-   | SetTargetRowAction;
+export type TargetActions = SetTargetElemAction | SetTargetRowAction;

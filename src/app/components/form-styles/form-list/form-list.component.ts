@@ -3,10 +3,9 @@ import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { selectParamsForm } from '../../../reducers/formStyles/formStyles.selectors';
 import { SetStyleFormAction } from '../../../reducers/formStyles/formStyles.actions';
-import { IListFormStyleState } from 'src/app/data/interfaces';
 import { EStylesNames } from 'src/app/data/enums';
+import { getListParamsForm, IStateRedusers } from 'src/app/reducers';
 
 @Component({
   selector: 'app-form-list',
@@ -17,13 +16,13 @@ export class FormListComponent {
 
   public EStylesNames = EStylesNames;
 
-  public listStylesForm$: Observable<string> = this.formStore.pipe(select(selectParamsForm));
+  public listStylesForm$: Observable<string> = this.store.pipe(select(getListParamsForm));
 
-  constructor(private formStore: Store<IListFormStyleState>) { }
+  constructor(private store: Store<IStateRedusers>) { }
 
   onChangeFormStyle(event: any): void {
-    let name = event.target.name;
-    let value = event.target.value;
-    this.formStore.dispatch(new SetStyleFormAction({ param: name, value: value }))
+    const name = event.target.name;
+    const value = event.target.value;
+    this.store.dispatch(new SetStyleFormAction({ param: name, value: value }))
   }
 }

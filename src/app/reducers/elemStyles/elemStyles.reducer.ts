@@ -3,7 +3,7 @@ import { CListStandartParams } from 'src/app/data/constantes';
 import { IListElemStyleState } from 'src/app/data/interfaces';
 import { СArrPxStyles } from 'src/app/data/constantes';
 
-export const stylesNode = 'listParams';
+export const stylesNodeElem = 'listParams';
 
 const initialState: IListElemStyleState[] = [];
 
@@ -26,7 +26,7 @@ export const styleReducer = (state = initialState, action: StyleActions) => {
                      ...el.params,
                      styles: {
                         ...el.params.styles,
-                        [action.payload.style]: СArrPxStyles.includes(action.payload.style) ? action.payload.value + "px" : action.payload.value
+                        [action.payload.style]: СArrPxStyles.includes(action.payload.style) ? action.payload.value + 'px' : action.payload.value
                      }
                   }
                }
@@ -40,7 +40,7 @@ export const styleReducer = (state = initialState, action: StyleActions) => {
                   id: action.payload.id,
                   params: {
                      ...el.params,
-                     [action.payload.param]: (action.payload.param !== "options") ? action.payload.value : action.payload.value.split("-")
+                     [action.payload.param]: (action.payload.param !== 'options') ? action.payload.value : action.payload.value.split('-')
                   }
                }
             }

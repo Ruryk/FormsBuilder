@@ -10,9 +10,10 @@ import { BehaviorSubject } from 'rxjs';
 import { SetNewElemAction, DeleteElemAction } from '../../reducers/elemStyles/elemStyles.actions';
 import { IListRowStyleState, IListElemStyleState, IListFormStyleState, IListElements } from 'src/app/data/interfaces';
 import { EBuilderElements } from '../../data/enums';
-import { ITargetId } from '../../data/interfaces';
 import { DeleteRowAction, SetNewRowAction } from '../../reducers/rowStyles/rowStyles.actions';
 import { SetTargetRowAction, SetTargetElemAction } from '../../reducers/target/target.actions';
+
+import { IStateRedusers } from 'src/app/reducers';
 
 @Component({
   selector: 'app-form-builder',
@@ -27,16 +28,16 @@ export class FormBuilderComponent {
   @Input() listStylesForm: IListFormStyleState[];
   @Input() listStylesRow: IListRowStyleState[];
 
-  @ViewChildren("exampleList") listRows: QueryList<ElementRef>;
+  @ViewChildren('exampleList') listRows: QueryList<ElementRef>;
   @ViewChildren(BuilderElemComponent, { read: ElementRef }) listElems: QueryList<ElementRef>;
 
   @ViewChild('popupError') popupError: SwalComponent;
 
   @HostListener('click', ['$event.target'])
   onClick(elem: HTMLElement) {
-    if (elem.classList.contains("example-list")) {
+    if (elem.classList.contains('example-list')) {
       this.setActiveRow(elem);
-    } else if (elem.classList.contains("elementForm")) {
+    } else if (elem.classList.contains('element-form')) {
       this.setActiveElem(elem);
     }
   }
@@ -53,11 +54,7 @@ export class FormBuilderComponent {
 
   public errorMessage: BehaviorSubject<string>;
 
-  constructor(
-    private store: Store<IListElemStyleState>,
-    private rowStore: Store<IListRowStyleState>,
-    private targetStore: Store<ITargetId>
-  ) {
+  constructor(private store: Store<IStateRedusers>) {
     this.errorMessage = new BehaviorSubject("");
   }
 
@@ -82,12 +79,12 @@ export class FormBuilderComponent {
 
   addRowToBasket(): void {
     this.basket.push([]);
-    this.rowStore.dispatch(new SetNewRowAction({ id: this.counterRowID }));
+    this.store.dispatch(new SetNewRowAction({ id: this.counterRowID }));
     this.counterRowID++;
   }
 
   deleteRow(): void {
-    const row = this.listRows.toArray().find(el => el.nativeElement.classList.contains('activeRow')).nativeElement;
+    const row = this.listRows.toArray().find(el => el.nativeElement.classList.contains('active-row')).nativeElement;
     const idRow = Number(row.id);
     const positionRow = Number(row.dataset.position);
     if (this.basket.length > 1) {
@@ -99,7 +96,7 @@ export class FormBuilderComponent {
 
   deleteRowFromBasket(positionRow: number, idRow: number): void {
     this.basket.splice(positionRow, 1);
-    this.rowStore.dispatch(new DeleteRowAction({ id: idRow }));
+    this.store.dispatch(new DeleteRowAction({ id: idRow }));
     this.deleteRowBtnStatus = true;
   }
 
@@ -114,7 +111,7 @@ export class FormBuilderComponent {
   }
 
   setActiveRow(row: HTMLElement): void {
-    if (row.classList.contains("activeRow")) {
+    if (row.classList.contains('active-row')) {
       this.removeClassOfActiveRow(row);
     } else {
       this.addClassToTargetRow(row);
@@ -122,18 +119,18 @@ export class FormBuilderComponent {
   }
 
   removeClassOfActiveRow(row: HTMLElement): void {
-    row.classList.remove("activeRow");
+    row.classList.remove('active-row');
     this.deleteRowBtnStatus = true;
-    this.targetStore.dispatch(new SetTargetRowAction({ id: null }));
+    this.store.dispatch(new SetTargetRowAction({ id: null }));
   }
 
   addClassToTargetRow(row: HTMLElement): void {
     this.listRows.toArray().forEach(el => {
-      el.nativeElement.classList.remove("activeRow");
+      el.nativeElement.classList.remove('active-row');
     })
-    row.classList.add("activeRow");
+    row.classList.add('active-row');
     this.deleteRowBtnStatus = false;
-    this.targetStore.dispatch(new SetTargetRowAction({ id: Number(row.id) }));
+    this.store.dispatch(new SetTargetRowAction({ id: Number(row.id) }));
   }
   /**
    * End Row Actions ================================================================
@@ -143,7 +140,7 @@ export class FormBuilderComponent {
    * Elem Actions ===================================================================
    */
   setActiveElem(elem: any): void {
-    if (elem.parentNode.classList.contains("activeElemForm")) {
+    if (elem.parentNode.classList.contains('active-elem-form')) {
       this.removeClassOfActiveElem(elem);
     } else {
       this.addClassToTargetElem(elem);
@@ -151,28 +148,28 @@ export class FormBuilderComponent {
   }
 
   removeClassOfActiveElem(elem: any): void {
-    elem.parentNode.classList.remove("activeElemForm");
+    elem.parentNode.classList.remove('active-elem-form');
     this.deleteElemBtnStatus = true;
-    this.targetStore.dispatch(new SetTargetElemAction({ id: null }));
+    this.store.dispatch(new SetTargetElemAction({ id: null }));
   }
 
   addClassToTargetElem(elem: any): void {
     this.listElems.toArray().forEach(el => {
-      el.nativeElement.classList.remove("activeElemForm");
+      el.nativeElement.classList.remove('active-elem-form');
     })
-    elem.parentNode.classList.add("activeElemForm");
+    elem.parentNode.classList.add('active-elem-form');
     this.deleteElemBtnStatus = false;
-    this.targetStore.dispatch(new SetTargetElemAction({ id: Number(elem.dataset.id) }));
+    this.store.dispatch(new SetTargetElemAction({ id: Number(elem.dataset.id) }));
   }
 
   deleteElem(): void {
-    const elem = this.listElems.toArray().find(el => el.nativeElement.classList.contains('activeElemForm')).nativeElement;
+    const elem = this.listElems.toArray().find(el => el.nativeElement.classList.contains('active-elem-form')).nativeElement;
     const elemId = Number(elem.dataset.id);
     const containerElem = elem.parentNode;
 
     containerElem.remove();
     this.deleteElemFromBasket(elemId);
-    this.targetStore.dispatch(new SetTargetElemAction({ id: null }));
+    this.store.dispatch(new SetTargetElemAction({ id: null }));
   }
 
   addElemToBasket(event: CdkDragDrop<any[]>, containerID: number): void {

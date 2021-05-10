@@ -13,14 +13,14 @@ export class FormStylesComponent {
   public panelOpenState = false;
   public step = 0;
 
-  setStep(index: number) {
+  setStep(index: number): void {
     this.step = index;
   }
 
   @Input() targetElemId: number;
   @Input() targetRowId: number;
 
-  ngOnChanges(changes: any) {
+  ngOnChanges(changes: any): void {
     if (changes['targetElemId'] && this.changeCount > 0) {
       this.setStep(2);
     } else if (changes['targetRowId'] && this.changeCount > 0) {

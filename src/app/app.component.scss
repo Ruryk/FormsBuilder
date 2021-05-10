@@ -7,17 +7,17 @@ a {
 a:link,
 a:visited,
 a:active {
-  color: $licnC;
+  color: $linkColor;
 }
 a:hover {
-  color: $aLicnC;
+  color: $activeLinkColor;
 }
 
 header,
 footer {
   flex: 0 0 auto;
-  background: $hfBg;
-  color: $hfC;
+  background: $bgColor;
+  color: $fontColor;
 }
 
 header {

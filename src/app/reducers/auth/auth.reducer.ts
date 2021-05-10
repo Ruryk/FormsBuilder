@@ -4,10 +4,10 @@ import { IUserAuth } from 'src/app/data/interfaces';
 export const authNode = 'auth';
 
 const initialState: IUserAuth = {
-   email: "",
-   token: "",
+   email: '',
+   token: '',
    authentication: false,
-   error: ""
+   error: ''
 };
 
 export const authReducer = (state = initialState, action: AuthActions) => {
@@ -17,7 +17,7 @@ export const authReducer = (state = initialState, action: AuthActions) => {
             email: action.payload.email,
             token: action.payload.token,
             authentication: true,
-            error: ""
+            error: ''
          };
       case authActionsType.loginFailure:
          return {
@@ -30,7 +30,7 @@ export const authReducer = (state = initialState, action: AuthActions) => {
             email: action.payload.email,
             token: action.payload.token,
             authentication: true,
-            error: ""
+            error: ''
          };
       case authActionsType.registerFailure:
          return {
@@ -40,10 +40,10 @@ export const authReducer = (state = initialState, action: AuthActions) => {
          };
       case authActionsType.logout:
          return {
-            email: "",
-            token: "",
+            email: '',
+            token: '',
             authentication: false,
-            error: ""
+            error: ''
          };
       default:
          return state;

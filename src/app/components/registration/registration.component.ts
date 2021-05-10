@@ -33,7 +33,7 @@ export class RegistrationComponent {
     event.preventDefault();
     const email = event.target[0].value;
     const pass = event.target[1].value;
-    this.userService.registration({ "email": email, "password": pass }, this.errorMessage, this.popupError);
+    this.userService.registration({ 'email': email, 'password': pass }, this.errorMessage, this.popupError);
   }
 
   public emailFormControl = new FormControl('', [

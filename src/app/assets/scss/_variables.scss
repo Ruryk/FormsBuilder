@@ -1,18 +1,22 @@
 // Colors
 $grey: rgb(209, 204, 204);
+$lightGrey: rgb(204, 204, 204);
 $green: rgb(68, 207, 40);
 $red: rgb(223, 15, 15);
+$black: rgb(0, 0, 0);
+$lightBlack: rgb(51, 51, 51);
+$white: rgb(255, 255, 255);
 
-$hfBg: rgb(26, 30, 37); //header&footer bg
-$hfC: rgb(255, 255, 255); //header&footer color
+$bgColor: rgb(26, 30, 37); //header&footer bg
+$fontColor: rgb(255, 255, 255); //header&footer color
 
-$plcBg: rgb(209, 204, 204); //placeholder bg
+$placeholderBgColor: rgb(209, 204, 204); //placeholder bg
 
-$licnC: rgb(255, 255, 255); //linc color
-$aLicnC: rgb(223, 15, 15); //active linc color
+$linkColor: rgb(255, 255, 255); //link color
+$activeLinkColor: rgb(223, 15, 15); //active linc color
 
 // Font-sizes
-$errorFZ: 50px;
+$errorFontSize: 50px;
 
 // Mixins
 @mixin example-box {
@@ -21,13 +25,12 @@ $errorFZ: 50px;
    justify-content: center;
    align-items: center;
    span {
-      border: solid 1px #ccc;
+      border: solid 1px $lightGrey;
       padding: 10px;
    }
 }
 
 @mixin example-list {
-   // border: 1px solid #ccc;
    min-height: 60px;
    background: transparent;
    border-radius: 4px;
@@ -73,11 +76,11 @@ $errorFZ: 50px;
    line-height: 3;
    overflow: hidden;
    border-radius: 0.25em;
-   border: 1px solid black;
+   border: 1px solid $black;
    select {
       flex: 1;
       padding: 0 0.5em;
-      color: "black";
+      color: $black;
       cursor: pointer;
    }
    /* Arrow */
@@ -95,13 +98,13 @@ $errorFZ: 50px;
    }
    /* Transition */
    &:hover::after {
-      color: "black";
+      color: $black;
    }
 }
 
 @mixin active-button {
-   background-color: rgba(0, 0, 0, 0.8) !important;
-   color: white !important;
+   background-color: rgba($black, 0.8) !important;
+   color: $white !important;
 }
 
 @mixin stylesTable {
@@ -111,17 +114,17 @@ $errorFZ: 50px;
    }
    /* Zebra striping */
    tr:nth-of-type(odd) {
-      background: #eee;
+      background: $lightGrey;
    }
    th {
-      background: #333;
-      color: white;
+      background: $lightBlack;
+      color: $white;
       font-weight: bold;
    }
    td,
    th {
       padding: 6px;
-      border: 1px solid #ccc;
+      border: 1px solid $lightGrey;
       text-align: left;
    }
 }

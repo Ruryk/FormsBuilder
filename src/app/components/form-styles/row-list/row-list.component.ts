@@ -2,10 +2,9 @@ import { Component, Input } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { IListRowStyleState } from 'src/app/data/interfaces';
 import { EStylesNames } from 'src/app/data/enums';
-import { selectParamsRowForId } from '../../../reducers/rowStyles/rowStyles.selectors';
 import { SetStyleRowAction } from '../../../reducers/rowStyles/rowStyles.actions';
+import { getListParamsRowForId, IStateRedusers } from 'src/app/reducers';
 
 @Component({
   selector: 'app-row-list',
@@ -20,15 +19,15 @@ export class RowListComponent {
 
   public listStylesRow$: Observable<string>;
 
-  constructor(private rowStore$: Store<IListRowStyleState>) { }
+  constructor(private store: Store<IStateRedusers>) { }
 
   ngOnChanges() {
-    this.listStylesRow$ = this.rowStore$.pipe(select(selectParamsRowForId, { id: this.targetRowId }))
+    this.listStylesRow$ = this.store.pipe(select(getListParamsRowForId, { id: this.targetRowId }))
   }
 
   onChangeRowStyle(event: any): void {
-    let name = event.target.name;
-    let value = event.target.value;
-    this.rowStore$.dispatch(new SetStyleRowAction({ id: this.targetRowId, param: name, value: value }))
+    const name = event.target.name;
+    const value = event.target.value;
+    this.store.dispatch(new SetStyleRowAction({ id: this.targetRowId, param: name, value: value }))
   }
 }

@@ -33,7 +33,7 @@ export class LoginComponent {
     event.preventDefault();
     const email = event.target[0].value;
     const pass = event.target[1].value;
-    this.authenticationService.login({ "email": email, "password": pass }, this.errorMessage, this.popupError);
+    this.authenticationService.login({ 'email': email, 'password': pass }, this.errorMessage, this.popupError);
   }
 
   public emailFormControl = new FormControl('', [

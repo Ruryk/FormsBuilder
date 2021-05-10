@@ -17,6 +17,7 @@
                [style]="getExampleListStyle(getRowID(i))" [attr.data-position]="i">
 
                <div class="example-box" *ngFor="let item of basket[i]" cdkDrag cdkDropList>
+
                   <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
 
                   <app-builder-elem [attr.data-id]="item.id" [elemCharacter]="item.character" [elemId]="item.id"
@@ -24,6 +25,7 @@
                   </app-builder-elem>
 
                </div>
+
             </div>
          </ng-container>
       </form>

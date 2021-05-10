@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
-import { selectParamsElemForId } from '../../../reducers/elemStyles/elemStyles.selectors';
 import { SetStyleElemAction, SetParamElemAction } from '../../../reducers/elemStyles/elemStyles.actions';
-import { IListElemStyleState } from 'src/app/data/interfaces';
 import { EParamsNames, EStylesNames } from 'src/app/data/enums';
 import { CPxNamesStyles } from 'src/app/data/constantes';
+import { getListParamsElemForId, IStateRedusers } from 'src/app/reducers';
 
 @Component({
   selector: 'app-elem-list',
@@ -23,11 +22,11 @@ export class ElemListComponent {
   public listStyles: any = [];
 
   constructor(
-    private store: Store<IListElemStyleState>
+    private store: Store<IStateRedusers>
   ) { }
 
   ngOnChanges(): void {
-    this.store.pipe(select(selectParamsElemForId, { id: this.targetElemId })).subscribe(subs => this.listStyles = subs);
+    this.store.pipe(select(getListParamsElemForId, { id: this.targetElemId })).subscribe(subs => this.listStyles = subs);
   }
 
   onChange(event: any): void {

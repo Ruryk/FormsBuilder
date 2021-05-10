@@ -7,10 +7,10 @@ const initialState: IListRowStyleState[] = [
    {
       id: 0,
       styles: {
-         minHeight: "50px",
-         flexDirection: "row",
-         justifyContent: "space-around",
-         alignItems: "center"
+         minHeight: '50px',
+         flexDirection: 'row',
+         justifyContent: 'space-around',
+         alignItems: 'center'
       }
    }
 ];
@@ -23,10 +23,10 @@ export const rowStyleReducer = (state = initialState, action: StyleActions) => {
             {
                id: action.payload.id,
                styles: {
-                  minHeight: "50px",
-                  flexDirection: "row",
-                  justifyContent: "space-around",
-                  alignItems: "center"
+                  minHeight: '50px',
+                  flexDirection: 'row',
+                  justifyContent: 'space-around',
+                  alignItems: 'center'
                }
             }
          ];
@@ -41,7 +41,7 @@ export const rowStyleReducer = (state = initialState, action: StyleActions) => {
          //       id: action.payload.id,
          //       styles: {
          //          ...row.styles,
-         //          [action.payload.param]: (action.payload.param === "minHeight") ? action.payload.value + "px" : action.payload.value
+         //          [action.payload.param]: (action.payload.param === 'minHeight') ? action.payload.value + 'px' : action.payload.value
          //       }
          //    }
          // ];
@@ -51,7 +51,7 @@ export const rowStyleReducer = (state = initialState, action: StyleActions) => {
                   id: action.payload.id,
                   styles: {
                      ...el.styles,
-                     [action.payload.param]: (action.payload.param === "minHeight") ? action.payload.value + "px" : action.payload.value
+                     [action.payload.param]: (action.payload.param === 'minHeight') ? action.payload.value + 'px' : action.payload.value
                   }
                }
             }
