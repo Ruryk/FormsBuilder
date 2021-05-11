@@ -1,0 +1,36 @@
+<h2>Styles</h2>
+
+<mat-accordion>
+   <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header>
+         <mat-panel-title>
+            Form
+         </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <app-form-list></app-form-list>
+
+   </mat-expansion-panel>
+
+   <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header>
+         <mat-panel-title>
+            Target Row
+         </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <app-row-list [targetRowId]="targetRowId"></app-row-list>
+
+   </mat-expansion-panel>
+
+   <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+      <mat-expansion-panel-header>
+         <mat-panel-title>
+            Target Element
+         </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <app-elem-list [targetElemId]="targetElemId"></app-elem-list>
+
+   </mat-expansion-panel>
+</mat-accordion>

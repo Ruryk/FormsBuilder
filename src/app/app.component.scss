@@ -1,0 +1,53 @@
+@import "./assets/scss/variables";
+
+a {
+  text-decoration: none;
+}
+
+a:link,
+a:visited,
+a:active {
+  color: $linkColor;
+}
+a:hover {
+  color: $activeLinkColor;
+}
+
+header,
+footer {
+  flex: 0 0 auto;
+  background: $bgColor;
+  color: $fontColor;
+}
+
+header {
+  padding: 30px 50px;
+  nav {
+    display: flex;
+    justify-content: space-between;
+    .logo {
+      font-size: 25px;
+    }
+    ul {
+      display: flex;
+      li {
+        margin: 0px 20px;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.main {
+  flex: 1 0 auto;
+  padding: 20px 0;
+}
+
+footer p {
+  padding-top: 15px;
+  text-align: center;
+}
+
+button:active {
+  @include active-button;
+}

@@ -1,0 +1,20 @@
+@import "/src/app/assets/scss/variables";
+
+h2,
+h3 {
+  @include headers;
+}
+
+.example-container {
+  border: solid 1px $grey;
+}
+
+.example-box {
+  @include example-box;
+  app-checkbox {
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
