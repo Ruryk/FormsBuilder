@@ -21,9 +21,7 @@ export class ElemListComponent {
 
   public listStyles: any = [];
 
-  constructor(
-    private store: Store<IStateRedusers>
-  ) { }
+  constructor(private store: Store<IStateRedusers>) { }
 
   ngOnChanges(): void {
     this.store.pipe(select(getListParamsElemForId, { id: this.targetElemId })).subscribe(subs => this.listStyles = subs);

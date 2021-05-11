@@ -1,5 +1,6 @@
 import { StyleActions, styleActionsType } from './formStyles.actions';
 import { IListFormStyleState } from 'src/app/data/interfaces';
+import { CPxNamesStyles } from 'src/app/data/constantes';
 
 export const stylesNodeForm = 'formStyles';
 
@@ -18,7 +19,7 @@ export const formStyleReducer = (state = initialState, action: StyleActions) => 
       case styleActionsType.setParamForm:
          return {
             ...state,
-            [action.payload.param]: (action.payload.param === 'fontSize' || action.payload.param === 'borderWidth' || action.payload.param === 'width') ? action.payload.value + 'px' : action.payload.value
+            [action.payload.param]: CPxNamesStyles.includes(action.payload.param) ? action.payload.value + 'px' : action.payload.value
          }
       default:
          return state;

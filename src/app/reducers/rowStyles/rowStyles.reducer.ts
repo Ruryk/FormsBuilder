@@ -2,6 +2,7 @@ import { StyleActions, styleActionsType } from './rowStyles.actions';
 
 export const stylesNodeRow = 'rowStyles';
 import { IListRowStyleState } from 'src/app/data/interfaces';
+import { CPxNamesStyles } from 'src/app/data/constantes';
 
 const initialState: IListRowStyleState[] = [
    {
@@ -31,27 +32,13 @@ export const rowStyleReducer = (state = initialState, action: StyleActions) => {
             }
          ];
       case styleActionsType.setParamRow:
-         // const rowIndex = state.findIndex(el => el.id === action.payload.id);
-         // const newState = [...state];
-         // newState.splice(rowIndex, 1);
-         // const row = state[rowIndex];
-         // return [
-         //    ...newState,
-         //    {
-         //       id: action.payload.id,
-         //       styles: {
-         //          ...row.styles,
-         //          [action.payload.param]: (action.payload.param === 'minHeight') ? action.payload.value + 'px' : action.payload.value
-         //       }
-         //    }
-         // ];
          return state.map(el => {
             if (el.id === action.payload.id) {
                return {
                   id: action.payload.id,
                   styles: {
                      ...el.styles,
-                     [action.payload.param]: (action.payload.param === 'minHeight') ? action.payload.value + 'px' : action.payload.value
+                     [action.payload.param]: CPxNamesStyles.includes(action.payload.param) ? action.payload.value + 'px' : action.payload.value
                   }
                }
             }

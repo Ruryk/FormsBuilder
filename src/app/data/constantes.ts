@@ -9,7 +9,8 @@ export const CPxNamesStyles = [
    'fontSize',
    'fontWeight',
    'backgroundColor',
-   'borderColor'
+   'borderColor',
+   'minHeight'
 ];
 
 export const ChttpOptions = {
@@ -29,7 +30,6 @@ export const CListStandartParams = {
          borderWidth: '1px',
          color: 'black',
          backgroundColor: 'transparent',
-
          borderRadius: '5px',
          borderColor: 'black',
          cursor: 'pointer'
@@ -98,6 +98,3 @@ export const CListStandartParams = {
       label: 'Checked Me!'
    }
 }
-
-
-export const СArrPxStyles: string[] = ['width', 'height', 'borderWidth', 'fontSize'];

@@ -1,7 +1,7 @@
 import { StyleActions, styleActionsType } from './elemStyles.actions';
 import { CListStandartParams } from 'src/app/data/constantes';
 import { IListElemStyleState } from 'src/app/data/interfaces';
-import { СArrPxStyles } from 'src/app/data/constantes';
+import { CPxNamesStyles } from 'src/app/data/constantes';
 
 export const stylesNodeElem = 'listParams';
 
@@ -26,7 +26,7 @@ export const styleReducer = (state = initialState, action: StyleActions) => {
                      ...el.params,
                      styles: {
                         ...el.params.styles,
-                        [action.payload.style]: СArrPxStyles.includes(action.payload.style) ? action.payload.value + 'px' : action.payload.value
+                        [action.payload.style]: CPxNamesStyles.includes(action.payload.style) ? action.payload.value + 'px' : action.payload.value
                      }
                   }
                }

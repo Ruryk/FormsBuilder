@@ -157,12 +157,12 @@ export class FormBuilderComponent {
     if (elem.localName === EBuilderElements.Select) {
       this.listElems.toArray().forEach(el => {
         el.nativeElement.parentNode.classList.remove('active-elem-form');
-      })
+      });
       elem.parentNode.parentNode.classList.add('active-elem-form');
     } else {
       this.listElems.toArray().forEach(el => {
         el.nativeElement.classList.remove('active-elem-form');
-      })
+      });
       elem.parentNode.classList.add('active-elem-form');
     }
     this.deleteElemBtnStatus = false;
