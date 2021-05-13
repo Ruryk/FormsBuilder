@@ -1,10 +1,10 @@
 import { Action } from '@ngrx/store';
 
 export enum styleActionsType {
-   setNewElem = '[STYLE] setNewElem',
-   setStyleElem = '[STYLE] setStyleElem',
-   setParamElem = '[STYLE] setParamElem',
-   deleteElem = '[STYLE] deleteElem'
+   setNewElem = '[ELEM-STYLE] setNewElem',
+   setStyleElem = '[ELEM-STYLE] setStyleElem',
+   setParamElem = '[ELEM-STYLE] setParamElem',
+   deleteElem = '[ELEM-STYLE] deleteElem'
 }
 export class SetNewElemAction implements Action {
    readonly type = styleActionsType.setNewElem;

@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 export enum styleActionsType {
-   setParamForm = '[STYLE] setParamForm'
+   setParamForm = '[FORM-STYLE] setParamForm'
 }
 
 export class SetStyleFormAction implements Action {

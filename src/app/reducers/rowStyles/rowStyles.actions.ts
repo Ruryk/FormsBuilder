@@ -1,9 +1,9 @@
 import { Action } from '@ngrx/store';
 
 export enum styleActionsType {
-   setNewRow = '[STYLE] setNewRow',
-   setParamRow = '[STYLE] setParamRow',
-   deleteRow = '[STYLE] deleteRow'
+   setNewRow = '[ROW-STYLE] setNewRow',
+   setParamRow = '[ROW-STYLE] setParamRow',
+   deleteRow = '[ROW-STYLE] deleteRow'
 }
 
 export class SetNewRowAction implements Action {

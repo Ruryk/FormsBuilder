@@ -1,6 +1,4 @@
-import {
-   ActionReducerMap, MetaReducer, createSelector
-} from '@ngrx/store';
+import { ActionReducerMap, MetaReducer, createSelector } from '@ngrx/store';
 
 import { environment } from '../../environments/environment';
 
