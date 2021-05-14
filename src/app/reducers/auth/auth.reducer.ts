@@ -1,4 +1,4 @@
-import { AuthActions, authActionsType } from './auth.actions';
+import { AuthActions, authActionsType } from 'src/app/reducers/auth/auth.actions';
 import { IUserAuth } from 'src/app/data/interfaces';
 
 export const authNode = 'auth';

@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { SetStyleFormAction } from '../../../reducers/formStyles/formStyles.actions';
+import { SetStyleFormAction } from 'src/app/reducers/formStyles/formStyles.actions';
 import { EStylesNames } from 'src/app/data/enums';
 import { getListParamsForm, IStateReducers } from 'src/app/reducers';
 

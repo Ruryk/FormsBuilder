@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
-import { SetStyleElemAction, SetParamElemAction } from '../../../reducers/elemStyles/elemStyles.actions';
+import { SetStyleElemAction, SetParamElemAction } from 'src/app/reducers/elemStyles/elemStyles.actions';
 import { EParamsNames, EStylesNames } from 'src/app/data/enums';
 import { CNamesStyles } from 'src/app/data/constantes';
 import { getListParamsElemForId, IStateReducers } from 'src/app/reducers';

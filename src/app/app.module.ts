@@ -14,32 +14,34 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { FormBuilderComponent } from './components/form-builder/form-builder.component';
-import { FormElementsComponent } from './components/form-elements/form-elements.component';
-import { FormStylesComponent } from './components/form-styles/form-styles.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ButtonComponent } from './components/form-elements/button/button.component';
-import { SelectComponent } from './components/form-elements/select/select.component';
-import { InputComponent } from './components/form-elements/input/input.component';
-import { CheckboxComponent } from './components/form-elements/checkbox/checkbox.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { metaReducers, reducers } from './reducers';
-import { TextareaComponent } from './components/form-elements/textarea/textarea.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegistrationComponent } from './components/registration/registration.component';
-import { MainComponent } from './components/main/main.component';
-import { ErrorComponent } from './components/error/error.component';
-import { FormListComponent } from './components/form-styles/form-list/form-list.component';
-import { RowListComponent } from './components/form-styles/row-list/row-list.component';
-import { ElemListComponent } from './components/form-styles/elem-list/elem-list.component';
-import { BuilderElemComponent } from './components/form-builder/builder-elem/builder-elem.component';
+
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { AppComponent } from 'src/app/app.component';
+import { FormBuilderComponent } from 'src/app/components/form-builder/form-builder.component';
+import { FormElementsComponent } from 'src/app/components/form-elements/form-elements.component';
+import { FormStylesComponent } from 'src/app/components/form-styles/form-styles.component';
+import { ButtonComponent } from 'src/app/components/form-elements/button/button.component';
+import { SelectComponent } from 'src/app/components/form-elements/select/select.component';
+import { InputComponent } from 'src/app/components/form-elements/input/input.component';
+import { CheckboxComponent } from 'src/app/components/form-elements/checkbox/checkbox.component';
+import { metaReducers, reducers } from 'src/app/reducers';
+import { TextareaComponent } from 'src/app/components/form-elements/textarea/textarea.component';
+import { LoginComponent } from 'src/app/components/login/login.component';
+import { RegistrationComponent } from 'src/app/components/registration/registration.component';
+import { MainComponent } from 'src/app/components/main/main.component';
+import { ErrorComponent } from 'src/app/components/error/error.component';
+import { FormListComponent } from 'src/app/components/form-styles/form-list/form-list.component';
+import { RowListComponent } from 'src/app/components/form-styles/row-list/row-list.component';
+import { ElemListComponent } from 'src/app/components/form-styles/elem-list/elem-list.component';
+import { BuilderElemComponent } from 'src/app/components/form-builder/builder-elem/builder-elem.component';
+
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [

@@ -1,4 +1,4 @@
-import { TargetActions, targetActionsType } from './target.actions';
+import { TargetActions, targetActionsType } from 'src/app/reducers/target/target.actions';
 import { ITargetId } from 'src/app/data/interfaces';
 
 export const targetNode = 'target';

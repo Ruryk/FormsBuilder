@@ -1,10 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators, } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { AuthenticationService } from '../../services/authentication.service';
-
 import { BehaviorSubject } from 'rxjs';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {

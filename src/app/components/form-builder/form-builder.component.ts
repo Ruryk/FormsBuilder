@@ -1,18 +1,15 @@
 import { Component, Input, ChangeDetectionStrategy, ElementRef, QueryList, ViewChildren, HostListener, ViewChild } from '@angular/core';
 import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
-import { BuilderElemComponent } from './builder-elem/builder-elem.component';
-
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
-
 import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 
-import { SetNewElemAction, DeleteElemAction } from '../../reducers/elemStyles/elemStyles.actions';
+import { BuilderElemComponent } from 'src/app/components/form-builder/builder-elem/builder-elem.component';
+import { SetNewElemAction, DeleteElemAction } from 'src/app/reducers/elemStyles/elemStyles.actions';
 import { IListRowStyleState, IListElemStyleState, IListFormStyleState, IListElements } from 'src/app/data/interfaces';
-import { EBuilderElements } from '../../data/enums';
-import { DeleteRowAction, SetNewRowAction } from '../../reducers/rowStyles/rowStyles.actions';
-import { SetTargetRowAction, SetTargetElemAction } from '../../reducers/target/target.actions';
-
+import { EBuilderElements } from 'src/app/data/enums';
+import { DeleteRowAction, SetNewRowAction } from 'src/app/reducers/rowStyles/rowStyles.actions';
+import { SetTargetRowAction, SetTargetElemAction } from 'src/app/reducers/target/target.actions';
 import { IStateReducers } from 'src/app/reducers';
 
 @Component({

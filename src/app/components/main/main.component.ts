@@ -1,10 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getListParamsElems, getListParamsForm, getListParamsRows, getTargetElem, IStateReducers } from 'src/app/reducers';
 
-import { getTargetRow } from "../../reducers";
+import { getListParamsElems, getListParamsForm, getListParamsRows, getTargetElem, IStateReducers, getTargetRow } from 'src/app/reducers';
 
 @Component({
   selector: 'app-main',

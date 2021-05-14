@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+
 import { IListStandartParams } from 'src/app/data/interfaces';
 
 @Component({

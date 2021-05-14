@@ -1,4 +1,4 @@
-import { StyleActions, styleActionsType } from './formStyles.actions';
+import { StyleActions, styleActionsType } from 'src/app/reducers/formStyles/formStyles.actions';
 import { IListFormStyleState } from 'src/app/data/interfaces';
 import { CPxNamesStyles } from 'src/app/data/constantes';
 

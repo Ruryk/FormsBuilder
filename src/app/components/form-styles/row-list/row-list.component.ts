@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { EStylesNames } from 'src/app/data/enums';
-import { SetStyleRowAction } from '../../../reducers/rowStyles/rowStyles.actions';
+import { SetStyleRowAction } from 'src/app/reducers/rowStyles/rowStyles.actions';
 import { getListParamsRowForId, IStateReducers } from 'src/app/reducers';
 
 @Component({

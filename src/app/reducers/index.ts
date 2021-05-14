@@ -1,20 +1,19 @@
 import { ActionReducerMap, MetaReducer, createSelector } from '@ngrx/store';
 
-import { environment } from '../../environments/environment';
-
+import { environment } from 'src/environments/environment';
 import { IListFormStyleState, IListRowStyleState, IListElemStyleState, IUserAuth, ITargetId } from 'src/app/data/interfaces';
 
-import { stylesNodeRow, rowStyleReducer } from './rowStyles/rowStyles.reducer';
-import { authNode, authReducer } from './auth/auth.reducer';
-import { targetNode, targetReducer } from './target/target.reducer';
-import { stylesNodeElem, styleReducer } from './elemStyles/elemStyles.reducer';
-import { stylesNodeForm, formStyleReducer } from './formStyles/formStyles.reducer';
+import { stylesNodeRow, rowStyleReducer } from 'src/app/reducers/rowStyles/rowStyles.reducer';
+import { authNode, authReducer } from 'src/app/reducers/auth/auth.reducer';
+import { targetNode, targetReducer } from 'src/app/reducers/target/target.reducer';
+import { stylesNodeElem, styleReducer } from 'src/app/reducers/elemStyles/elemStyles.reducer';
+import { stylesNodeForm, formStyleReducer } from 'src/app/reducers/formStyles/formStyles.reducer';
 
-import * as targetSelector from './target/target.selectors';
-import * as elemStylesSelector from './elemStyles/elemStyles.selectors';
-import * as formStylesSelector from './formStyles/formStyles.selectors';
-import * as rowStylesSelector from './rowStyles/rowStyles.selectors';
-import * as authSelector from './auth/auth.selectors';
+import * as targetSelector from 'src/app/reducers/target/target.selectors';
+import * as elemStylesSelector from 'src/app/reducers/elemStyles/elemStyles.selectors';
+import * as formStylesSelector from 'src/app/reducers/formStyles/formStyles.selectors';
+import * as rowStylesSelector from 'src/app/reducers/rowStyles/rowStyles.selectors';
+import * as authSelector from 'src/app/reducers/auth/auth.selectors';
 
 export interface IStateReducers {
    [stylesNodeElem]: IListElemStyleState[];

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import { IListElements } from '../../data/interfaces';
-import { CListStandartParams } from '../../data/constantes';
-import { EBuilderElements } from '../../data/enums';
+import { IListElements } from 'src/app/data/interfaces';
+import { CListStandartParams } from 'src/app/data/constantes';
+import { EBuilderElements } from 'src/app/data/enums';
 
 @Component({
   selector: 'app-form-elements',
