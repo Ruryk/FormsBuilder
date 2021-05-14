@@ -6,7 +6,7 @@ import { ReactiveComponentModule } from '@ngrx/component';
 
 import { LoginComponent } from 'src/app/shared/login/component/login.component';
 import { MaterialUiModule } from 'src/app/shared/material-ui/material-ui.module';
-import { LoginRoutingModule } from './login-routing.module';
+import { LoginRoutingModule } from 'src/app/shared/login/login-routing.module';
 
 @NgModule({
   declarations: [

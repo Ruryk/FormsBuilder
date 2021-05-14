@@ -6,7 +6,7 @@ import { ReactiveComponentModule } from '@ngrx/component';
 
 import { RegistrationComponent } from 'src/app/shared/registration/component/registration.component';
 import { MaterialUiModule } from 'src/app/shared/material-ui/material-ui.module';
-import { RegistrationRoutingModule } from './registration-routing.module';
+import { RegistrationRoutingModule } from 'src/app/shared/registration/registration-routing.module';
 
 @NgModule({
   declarations: [

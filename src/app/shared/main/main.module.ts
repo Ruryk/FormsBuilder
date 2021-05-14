@@ -9,7 +9,7 @@ import { FormStylesModule } from 'src/app/shared/form-styles/form-styles.module'
 import { FormElementsModule } from 'src/app/shared/form-elements/form-elements.module';
 import { FormBuilderModule } from 'src/app/shared/form-builder/form-builder.module';
 import { MaterialUiModule } from 'src/app/shared/material-ui/material-ui.module';
-import { MainRoutingModule } from './main-routing.module';
+import { MainRoutingModule } from 'src/app/shared/main/main-routing.module';
 
 @NgModule({
   declarations: [
