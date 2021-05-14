@@ -4,8 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ReactiveComponentModule } from '@ngrx/component';
 
-import { FormBuilderComponent } from 'src/app/components/form-builder/form-builder.component';
-import { BuilderElemComponent } from 'src/app/components/form-builder/builder-elem/builder-elem.component';
+import { FormBuilderComponent } from 'src/app/shared/form-builder/component/form-builder.component';
+import { BuilderElemComponent } from 'src/app/shared/form-builder/component/builder-elem/builder-elem.component';
 import { MaterialUiModule } from 'src/app/shared/material-ui/material-ui.module';
 
 

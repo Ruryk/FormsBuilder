@@ -1,18 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {LoginComponent} from 'src/app/components/login/login.component';
-import {RegistrationComponent} from 'src/app/components/registration/registration.component';
-import {MainComponent} from 'src/app/components/main/main.component';
-import {ErrorComponent} from 'src/app/shared/error/component/error.component';
 import {AuthGuard} from 'src/app/auth-guard/auth-guard';
 
 const routes: Routes = [
-  {path: '', component: MainComponent},
-  // { path: '', component: MainComponent, canActivate: [AuthGuard] },
-  {path: 'login', component: LoginComponent},
-  {path: 'registration', component: RegistrationComponent},
-  // { path: '**', component: ErrorComponent }
+  {path: '', loadChildren: () => import('src/app/shared/main/main.module').then(m => m.MainModule)},
+  // {path: '', loadChildren: () => import('src/app/shared/main/main.module').then(m => m.MainModule), canActivate: [AuthGuard]},
+  {path: 'login', loadChildren: () => import('src/app/shared/login/login.module').then(m => m.LoginModule)},
+  {path: 'registration', loadChildren: () => import('src/app/shared/registration/registration.module').then(m => m.RegistrationModule)},
   {path: '**', loadChildren: () => import('src/app/shared/error/error.module').then(m => m.ErrorModule)}
 ];
 
@@ -22,5 +17,4 @@ const routes: Routes = [
   providers: [AuthGuard]
 })
 
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }

@@ -4,8 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ReactiveComponentModule } from '@ngrx/component';
 
-import { LoginComponent } from 'src/app/components/login/login.component';
+import { LoginComponent } from 'src/app/shared/login/component/login.component';
 import { MaterialUiModule } from 'src/app/shared/material-ui/material-ui.module';
+import { LoginRoutingModule } from './login-routing.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { MaterialUiModule } from 'src/app/shared/material-ui/material-ui.module'
     CommonModule,
     MaterialUiModule,
     FormsModule,
+    LoginRoutingModule,
     ReactiveFormsModule,
     ReactiveComponentModule,
     SweetAlert2Module

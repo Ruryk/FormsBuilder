@@ -26,7 +26,7 @@ export class RegistrationComponent {
   public errorMessage: BehaviorSubject<string>;
 
   constructor(private userService: UserService) {
-    this.errorMessage = new BehaviorSubject("");
+    this.errorMessage = new BehaviorSubject('');
   }
 
   sendForm(event: any): void {

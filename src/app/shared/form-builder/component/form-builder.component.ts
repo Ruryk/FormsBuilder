@@ -4,7 +4,7 @@ import {SwalComponent} from '@sweetalert2/ngx-sweetalert2';
 import {Store} from '@ngrx/store';
 import {BehaviorSubject} from 'rxjs';
 
-import {BuilderElemComponent} from 'src/app/components/form-builder/builder-elem/builder-elem.component';
+import {BuilderElemComponent} from 'src/app/shared/form-builder/component/builder-elem/builder-elem.component';
 import {IListRowStyleState, IListElemStyleState, IListFormStyleState, IListElements, IBtnStatus} from 'src/app/data/interfaces';
 import {IStateReducers} from 'src/app/reducers';
 import {RowActionService} from 'src/app/services/row-action.service';
