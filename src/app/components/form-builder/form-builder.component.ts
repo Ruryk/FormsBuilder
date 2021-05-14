@@ -20,6 +20,15 @@ import { IStateReducers } from 'src/app/reducers';
 })
 
 export class FormBuilderComponent {
+  public basket: Array<IListElements[]> = [[]];
+
+  public counterID: number = 0;
+  public counterRowID: number = 1;
+
+  public deleteElemBtnStatus: boolean = true;
+  public deleteRowBtnStatus: boolean = true;
+
+  public errorMessage: BehaviorSubject<string>;
 
   @Input() listStylesElem: IListElemStyleState[];
   @Input() listStylesForm: IListFormStyleState[];
@@ -31,7 +40,7 @@ export class FormBuilderComponent {
   @ViewChild('popupError') popupError: SwalComponent;
 
   @HostListener('click', ['$event.target'])
-  onClick(elem: HTMLElement) {
+  onClick(elem: HTMLElement): void {
     if (elem.classList.contains('example-list')) {
       this.setActiveRow(elem);
     } else if (elem.classList.contains('element-form')) {
@@ -39,20 +48,8 @@ export class FormBuilderComponent {
     }
   }
 
-  public EBuilderElements = EBuilderElements;
-
-  public basket: Array<IListElements[]> = [[]];
-
-  public counterID: number = 0;
-  public counterRowID: number = 1;
-
-  public deleteElemBtnStatus: boolean = true;
-  public deleteRowBtnStatus: boolean = true;
-
-  public errorMessage: BehaviorSubject<string>;
-
   constructor(private store: Store<IStateReducers>) {
-    this.errorMessage = new BehaviorSubject("");
+    this.errorMessage = new BehaviorSubject('');
   }
 
   getExampleListStyle(id: number): any {
@@ -124,7 +121,7 @@ export class FormBuilderComponent {
   addClassToTargetRow(row: HTMLElement): void {
     this.listRows.toArray().forEach(el => {
       el.nativeElement.classList.remove('active-row');
-    })
+    });
     row.classList.add('active-row');
     this.deleteRowBtnStatus = false;
     this.store.dispatch(new SetTargetRowAction({ id: Number(row.id) }));
@@ -195,7 +192,7 @@ export class FormBuilderComponent {
   deleteElemFromBasket(elemId: number): void {
     this.basket.forEach((_, i) => {
       this.basket[i] = this.basket[i].filter(el => el.id !== elemId);
-    })
+    });
     this.store.dispatch(new DeleteElemAction({ id: elemId }));
     this.deleteElemBtnStatus = true;
   }
