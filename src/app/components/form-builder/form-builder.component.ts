@@ -1,16 +1,14 @@
-import { Component, Input, ChangeDetectionStrategy, ElementRef, QueryList, ViewChildren, HostListener, ViewChild } from '@angular/core';
-import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
-import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
-import { Store } from '@ngrx/store';
-import { BehaviorSubject } from 'rxjs';
+import {Component, Input, ChangeDetectionStrategy, ElementRef, QueryList, ViewChildren, HostListener, ViewChild} from '@angular/core';
+import {moveItemInArray, CdkDragDrop} from '@angular/cdk/drag-drop';
+import {SwalComponent} from '@sweetalert2/ngx-sweetalert2';
+import {Store} from '@ngrx/store';
+import {BehaviorSubject} from 'rxjs';
 
-import { BuilderElemComponent } from 'src/app/components/form-builder/builder-elem/builder-elem.component';
-import { SetNewElemAction, DeleteElemAction } from 'src/app/reducers/elemStyles/elemStyles.actions';
-import { IListRowStyleState, IListElemStyleState, IListFormStyleState, IListElements } from 'src/app/data/interfaces';
-import { EBuilderElements } from 'src/app/data/enums';
-import { DeleteRowAction, SetNewRowAction } from 'src/app/reducers/rowStyles/rowStyles.actions';
-import { SetTargetRowAction, SetTargetElemAction } from 'src/app/reducers/target/target.actions';
-import { IStateReducers } from 'src/app/reducers';
+import {BuilderElemComponent} from 'src/app/components/form-builder/builder-elem/builder-elem.component';
+import {IListRowStyleState, IListElemStyleState, IListFormStyleState, IListElements, IBtnStatus} from 'src/app/data/interfaces';
+import {IStateReducers} from 'src/app/reducers';
+import {RowActionService} from 'src/app/services/row-action.service';
+import {ElemActionService} from 'src/app/services/elem-action.service';
 
 @Component({
   selector: 'app-form-builder',
@@ -20,13 +18,13 @@ import { IStateReducers } from 'src/app/reducers';
 })
 
 export class FormBuilderComponent {
+
   public basket: Array<IListElements[]> = [[]];
 
-  public counterID: number = 0;
-  public counterRowID: number = 1;
-
-  public deleteElemBtnStatus: boolean = true;
-  public deleteRowBtnStatus: boolean = true;
+  public deleteBtnStatus: IBtnStatus = {
+    deleteElemBtnStatus: true,
+    deleteRowBtnStatus: true
+  };
 
   public errorMessage: BehaviorSubject<string>;
 
@@ -35,7 +33,7 @@ export class FormBuilderComponent {
   @Input() listStylesRow: IListRowStyleState[];
 
   @ViewChildren('exampleList') listRows: QueryList<ElementRef>;
-  @ViewChildren(BuilderElemComponent, { read: ElementRef }) listElems: QueryList<ElementRef>;
+  @ViewChildren(BuilderElemComponent, {read: ElementRef}) listElems: QueryList<ElementRef>;
 
   @ViewChild('popupError') popupError: SwalComponent;
 
@@ -48,7 +46,11 @@ export class FormBuilderComponent {
     }
   }
 
-  constructor(private store: Store<IStateReducers>) {
+  constructor(
+    private store: Store<IStateReducers>,
+    private rowAction: RowActionService,
+    private elemAction: ElemActionService,
+  ) {
     this.errorMessage = new BehaviorSubject('');
   }
 
@@ -59,73 +61,22 @@ export class FormBuilderComponent {
   getRowID(order: any): number {
     return this.listStylesRow[order].id;
   }
+
   /**
    * Row Actions ================================================================
    */
   addRow(): void {
-    if (this.basket.length < 10) {
-      this.addRowToBasket();
-    } else {
-      this.errorMessage.next('Maximum number of rows!');
-      setTimeout(() => this.popupError.fire(), 0);
-    }
-  }
-
-  addRowToBasket(): void {
-    this.basket.push([]);
-    this.store.dispatch(new SetNewRowAction({ id: this.counterRowID }));
-    this.counterRowID++;
+    this.rowAction.addRow(this.basket, this.errorMessage, this.popupError);
   }
 
   deleteRow(): void {
-    const row = this.listRows.toArray().find(el => el.nativeElement.classList.contains('active-row')).nativeElement;
-    const idRow = Number(row.id);
-    const positionRow = Number(row.dataset.position);
-    if (this.basket.length > 1) {
-      this.checkChildrenOfRow(positionRow, row, idRow);
-    } else {
-      this.removeClassOfActiveRow(row);
-    }
-  }
-
-  deleteRowFromBasket(positionRow: number, idRow: number): void {
-    this.basket.splice(positionRow, 1);
-    this.store.dispatch(new DeleteRowAction({ id: idRow }));
-    this.deleteRowBtnStatus = true;
-  }
-
-  checkChildrenOfRow(positionRow: number, row: HTMLElement, idRow: number): void {
-    if (row.children.length === 0) {
-      this.deleteRowFromBasket(positionRow, idRow);
-    } else {
-      this.removeClassOfActiveRow(row);
-      this.errorMessage.next('Row are not empty! Delete Elements in row and after delete row!');
-      setTimeout(() => this.popupError.fire(), 0);
-    }
+    this.rowAction.deleteRow(this.listRows, this.basket, this.errorMessage, this.popupError, this.deleteBtnStatus);
   }
 
   setActiveRow(row: HTMLElement): void {
-    if (row.classList.contains('active-row')) {
-      this.removeClassOfActiveRow(row);
-    } else {
-      this.addClassToTargetRow(row);
-    }
+    this.rowAction.setActiveRow(row, this.deleteBtnStatus, this.listRows);
   }
 
-  removeClassOfActiveRow(row: HTMLElement): void {
-    row.classList.remove('active-row');
-    this.deleteRowBtnStatus = true;
-    this.store.dispatch(new SetTargetRowAction({ id: null }));
-  }
-
-  addClassToTargetRow(row: HTMLElement): void {
-    this.listRows.toArray().forEach(el => {
-      el.nativeElement.classList.remove('active-row');
-    });
-    row.classList.add('active-row');
-    this.deleteRowBtnStatus = false;
-    this.store.dispatch(new SetTargetRowAction({ id: Number(row.id) }));
-  }
   /**
    * End Row Actions ================================================================
    */
@@ -134,67 +85,15 @@ export class FormBuilderComponent {
    * Elem Actions ===================================================================
    */
   setActiveElem(elem: any): void {
-    if (elem.parentNode.classList.contains('active-elem-form')) {
-      this.removeClassOfActiveElem(elem);
-    } else {
-      this.addClassToTargetElem(elem);
-    }
-  }
-
-  removeClassOfActiveElem(elem: any): void {
-    elem.parentNode.classList.remove('active-elem-form');
-    this.deleteElemBtnStatus = true;
-    this.store.dispatch(new SetTargetElemAction({ id: null }));
-  }
-
-  addClassToTargetElem(elem: any): void {
-    if (elem.localName === EBuilderElements.Select) {
-      this.listElems.toArray().forEach(el => {
-        el.nativeElement.parentNode.classList.remove('active-elem-form');
-        el.nativeElement.classList.remove('active-elem-form');
-      });
-      elem.parentNode.parentNode.classList.add('active-elem-form');
-    } else {
-      this.listElems.toArray().forEach(el => {
-        el.nativeElement.classList.remove('active-elem-form');
-      });
-      elem.parentNode.classList.add('active-elem-form');
-    }
-    this.deleteElemBtnStatus = false;
-    this.store.dispatch(new SetTargetElemAction({ id: Number(elem.dataset.id) }));
+    this.elemAction.setActiveElem(elem, this.deleteBtnStatus, this.listElems);
   }
 
   deleteElem(): void {
-    const elem = this.listElems.toArray().find(el => el.nativeElement.classList.contains('active-elem-form')).nativeElement;
-    const elemId = Number(elem.dataset.id);
-    const containerElem = elem.parentNode;
-
-    containerElem.remove();
-    this.deleteElemFromBasket(elemId);
-    this.store.dispatch(new SetTargetElemAction({ id: null }));
+    this.elemAction.deleteElem(this.basket, this.listElems, this.deleteBtnStatus);
   }
 
   addElemToBasket(event: CdkDragDrop<any[]>, containerID: number): void {
-    if (this.basket[containerID].length < 4) {
-      const data = {
-        character: event.previousContainer.data[event.previousIndex].character,
-        id: this.counterID
-      };
-      this.basket[containerID].push(data);
-      this.store.dispatch(new SetNewElemAction({ type: data.character, id: this.counterID }));
-      this.counterID++;
-    } else {
-      this.errorMessage.next('Maximum 4 elements in row!');
-      setTimeout(() => this.popupError.fire(), 0);
-    }
-  }
-
-  deleteElemFromBasket(elemId: number): void {
-    this.basket.forEach((_, i) => {
-      this.basket[i] = this.basket[i].filter(el => el.id !== elemId);
-    });
-    this.store.dispatch(new DeleteElemAction({ id: elemId }));
-    this.deleteElemBtnStatus = true;
+    this.elemAction.addElemToBasket(event, this.basket, containerID, this.errorMessage, this.popupError);
   }
 
   drop(event: CdkDragDrop<any[]>): void {
@@ -205,6 +104,7 @@ export class FormBuilderComponent {
       this.addElemToBasket(event, containerID);
     }
   }
+
   /**
    * End Elem Actions ===================================================================
    */

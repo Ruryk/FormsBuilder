@@ -3,6 +3,11 @@ export interface ITargetId {
    targetElemId: number;
 }
 
+export interface IBtnStatus {
+  deleteElemBtnStatus: boolean;
+  deleteRowBtnStatus: boolean;
+}
+
 export interface IUserAuth {
    email: string;
    token: string;
@@ -45,7 +50,7 @@ export interface IListElemStyleState {
          fontWeight?: string;
          backgroundColor?: string;
       }
-   }
+   };
 }
 
 export interface IListRowStyleState {
@@ -55,7 +60,7 @@ export interface IListRowStyleState {
       flexDirection: string;
       justifyContent: string;
       alignItems: string;
-   }
+   };
 }
 
 export interface IListFormStyleState {
@@ -100,5 +105,5 @@ export interface IListStandartParams {
       fontSize?: string;
       fontWeight?: string;
       backgroundColor?: string;
-   }
+   };
 }

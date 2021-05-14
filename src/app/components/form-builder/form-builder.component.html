@@ -2,9 +2,9 @@
 <div>
    <div class="control-form">
       <button mat-raised-button color="primary" (click)="addRow()">Add Row</button>
-      <button mat-raised-button color="warn" (click)="deleteElem()" [disabled]="deleteElemBtnStatus">Delete
+      <button mat-raised-button color="warn" (click)="deleteElem()" [disabled]="deleteBtnStatus.deleteElemBtnStatus">Delete
          Element</button>
-      <button mat-raised-button color="warn" (click)="deleteRow()" [disabled]="deleteRowBtnStatus">Delete
+      <button mat-raised-button color="warn" (click)="deleteRow()" [disabled]="deleteBtnStatus.deleteRowBtnStatus">Delete
          Row</button>
    </div>
 
