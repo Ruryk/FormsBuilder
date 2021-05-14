@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges} from '@angular/core';
 import { IListElemStyleState } from 'src/app/data/interfaces';
 
 import { EBuilderElements } from 'src/app/data/enums';
@@ -10,7 +10,7 @@ import { EBuilderElements } from 'src/app/data/enums';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class BuilderElemComponent {
+export class BuilderElemComponent implements OnChanges{
 
   @Input() listStylesElem: IListElemStyleState[];
   @Input() elemId: number;

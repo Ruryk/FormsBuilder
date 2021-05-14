@@ -1,16 +1,16 @@
 <h2>Form Elements</h2>
 <div>
-   <div cdkDropList [cdkDropListData]="listElements" class="example-container">
-      <div class="example-box" *ngFor="let item of listElements">
-         <ng-container [ngSwitch]="item.character">
-            <app-button *ngSwitchCase="EBuilderElements.Button" [params]="paramsList.button" cdkDrag></app-button>
-            <app-select *ngSwitchCase="EBuilderElements.Select" [params]="paramsList.select" cdkDrag></app-select>
-            <app-textarea *ngSwitchCase="EBuilderElements.TextArea" [params]="paramsList.textarea" cdkDrag>
-            </app-textarea>
-            <app-input *ngSwitchCase="EBuilderElements.Input" [params]="paramsList.input" cdkDrag></app-input>
-            <app-checkbox *ngSwitchCase="EBuilderElements.CheckBox" [params]="paramsList.checkbox" cdkDrag>
-            </app-checkbox>
-         </ng-container>
-      </div>
-   </div>
+  <div cdkDropList [cdkDropListData]="listElements" class="example-container">
+    <div class="example-box" *ngFor="let item of listElements">
+      <ng-container [ngSwitch]="item.character">
+        <app-button *ngSwitchCase="EBuilderElements.Button" [params]="paramsList.button" cdkDrag></app-button>
+        <app-select *ngSwitchCase="EBuilderElements.Select" [params]="paramsList.select" cdkDrag></app-select>
+        <app-textarea *ngSwitchCase="EBuilderElements.TextArea" [params]="paramsList.textarea" cdkDrag>
+        </app-textarea>
+        <app-input *ngSwitchCase="EBuilderElements.Input" [params]="paramsList.input" cdkDrag></app-input>
+        <app-checkbox *ngSwitchCase="EBuilderElements.CheckBox" [params]="paramsList.checkbox" cdkDrag>
+        </app-checkbox>
+      </ng-container>
+    </div>
+  </div>
 </div>

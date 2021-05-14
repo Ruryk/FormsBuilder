@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges} from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
 import { SetStyleElemAction, SetParamElemAction } from 'src/app/reducers/elemStyles/elemStyles.actions';
@@ -12,7 +12,7 @@ import { getListParamsElemForId, IStateReducers } from 'src/app/reducers';
   styleUrls: ['./elem-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ElemListComponent {
+export class ElemListComponent implements OnChanges{
 
   public EParamsNames = EParamsNames;
   public EStylesNames = EStylesNames;
@@ -32,9 +32,9 @@ export class ElemListComponent {
     const value = event.target.value;
 
     if (CNamesStyles.includes(name)) {
-      this.store.dispatch(new SetStyleElemAction({ id: this.targetElemId, style: name, value: value }))
+      this.store.dispatch(new SetStyleElemAction({ id: this.targetElemId, style: name, value: value }));
     } else {
-      this.store.dispatch(new SetParamElemAction({ id: this.targetElemId, param: name, value: value }))
+      this.store.dispatch(new SetParamElemAction({ id: this.targetElemId, param: name, value: value }));
     }
   }
 }

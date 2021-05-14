@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import {AuthGuard} from 'src/app/auth-guard/auth-guard';
+import { AuthGuard } from 'src/app/auth-guard/auth-guard';
 
 const routes: Routes = [
   {path: '', loadChildren: () => import('src/app/shared/main/main.module').then(m => m.MainModule)},

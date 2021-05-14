@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -11,7 +11,7 @@ import { getListParamsRowForId, IStateReducers } from 'src/app/reducers';
   templateUrl: './row-list.component.html',
   styleUrls: ['./row-list.component.scss']
 })
-export class RowListComponent {
+export class RowListComponent implements OnChanges{
 
   @Input() targetRowId: number;
 
@@ -21,7 +21,7 @@ export class RowListComponent {
 
   constructor(private store: Store<IStateReducers>) { }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     this.listStylesRow$ = this.store.pipe(select(getListParamsRowForId, { id: this.targetRowId }))
   }
 

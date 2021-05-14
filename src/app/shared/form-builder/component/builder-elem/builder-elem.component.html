@@ -1,32 +1,32 @@
 <ng-container [ngSwitch]="elemCharacter">
-   <ng-container *ngSwitchCase="EBuilderElements.Button">
-      <button [attr.data-id]="elemId" class="element-form" [type]="elemStyles.type" [style]="elemStyles.styles">{{
-         elemStyles.text }}</button>
-   </ng-container>
+  <ng-container *ngSwitchCase="EBuilderElements.Button">
+    <button [attr.data-id]="elemId" class="element-form" [type]="elemStyles.type" [style]="elemStyles.styles">{{
+      elemStyles.text }}</button>
+  </ng-container>
 
-   <ng-container *ngSwitchCase="EBuilderElements.Input">
-      <input [attr.data-id]="elemId" class="element-form" [type]="elemStyles.type" [name]="elemStyles.name"
-         [placeholder]="elemStyles.placeholder" [style]="elemStyles.styles">
-   </ng-container>
+  <ng-container *ngSwitchCase="EBuilderElements.Input">
+    <input [attr.data-id]="elemId" class="element-form" [type]="elemStyles.type" [name]="elemStyles.name"
+           [placeholder]="elemStyles.placeholder" [style]="elemStyles.styles">
+  </ng-container>
 
-   <ng-container *ngSwitchCase="EBuilderElements.TextArea">
+  <ng-container *ngSwitchCase="EBuilderElements.TextArea">
       <textarea [attr.data-id]="elemId" class="element-form" [name]="elemStyles.name" [style]="elemStyles.styles"
-         [placeholder]="elemStyles.placeholder">{{ elemStyles.text }}</textarea>
-   </ng-container>
+                [placeholder]="elemStyles.placeholder">{{ elemStyles.text }}</textarea>
+  </ng-container>
 
-   <ng-container *ngSwitchCase="EBuilderElements.Select">
-      <div class="select">
-         <select [attr.data-id]="elemId" class="element-form" name="elemStyles.name" id="'select'+elemId"
-            [style]="elemStyles.styles" [required]="elemStyles.required">
-            <option value="" selected disabled>{{ elemStyles.defaultOption }}</option>
-            <option *ngFor="let option of elemStyles.options" [value]="option">{{ option }}
-         </select>
-      </div>
-   </ng-container>
+  <ng-container *ngSwitchCase="EBuilderElements.Select">
+    <div class="select">
+      <select [attr.data-id]="elemId" class="element-form" name="elemStyles.name" id="'select'+elemId"
+              [style]="elemStyles.styles" [required]="elemStyles.required">
+        <option value="" selected disabled>{{ elemStyles.defaultOption }}</option>
+        <option *ngFor="let option of elemStyles.options" [value]="option">{{ option }}
+      </select>
+    </div>
+  </ng-container>
 
-   <ng-container *ngSwitchCase="EBuilderElements.CheckBox">
-      <input [attr.data-id]="elemId" class="element-form" type="checkbox" [name]="elemStyles.name"
-         [id]="'checkbox'+elemId" [style]="elemStyles.styles" [value]="elemStyles.value">
-      <label [for]="'checkbox'+elemId">{{ elemStyles.label }}</label>
-   </ng-container>
+  <ng-container *ngSwitchCase="EBuilderElements.CheckBox">
+    <input [attr.data-id]="elemId" class="element-form" type="checkbox" [name]="elemStyles.name"
+           [id]="'checkbox'+elemId" [style]="elemStyles.styles" [value]="elemStyles.value">
+    <label [for]="'checkbox'+elemId">{{ elemStyles.label }}</label>
+  </ng-container>
 </ng-container>
