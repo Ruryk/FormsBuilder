@@ -3,8 +3,8 @@ import { select, Store } from '@ngrx/store';
 
 import { SetStyleElemAction, SetParamElemAction } from '../../../reducers/elemStyles/elemStyles.actions';
 import { EParamsNames, EStylesNames } from 'src/app/data/enums';
-import { CPxNamesStyles } from 'src/app/data/constantes';
-import { getListParamsElemForId, IStateRedusers } from 'src/app/reducers';
+import { CNamesStyles } from 'src/app/data/constantes';
+import { getListParamsElemForId, IStateReducers } from 'src/app/reducers';
 
 @Component({
   selector: 'app-elem-list',
@@ -21,7 +21,7 @@ export class ElemListComponent {
 
   public listStyles: any = [];
 
-  constructor(private store: Store<IStateRedusers>) { }
+  constructor(private store: Store<IStateReducers>) { }
 
   ngOnChanges(): void {
     this.store.pipe(select(getListParamsElemForId, { id: this.targetElemId })).subscribe(subs => this.listStyles = subs);
@@ -31,7 +31,7 @@ export class ElemListComponent {
     const name = event.target.name;
     const value = event.target.value;
 
-    if (CPxNamesStyles.includes(name)) {
+    if (CNamesStyles.includes(name)) {
       this.store.dispatch(new SetStyleElemAction({ id: this.targetElemId, style: name, value: value }))
     } else {
       this.store.dispatch(new SetParamElemAction({ id: this.targetElemId, param: name, value: value }))

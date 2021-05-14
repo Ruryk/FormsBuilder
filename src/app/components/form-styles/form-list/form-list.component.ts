@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { SetStyleFormAction } from '../../../reducers/formStyles/formStyles.actions';
 import { EStylesNames } from 'src/app/data/enums';
-import { getListParamsForm, IStateRedusers } from 'src/app/reducers';
+import { getListParamsForm, IStateReducers } from 'src/app/reducers';
 
 @Component({
   selector: 'app-form-list',
@@ -18,7 +18,7 @@ export class FormListComponent {
 
   public listStylesForm$: Observable<string> = this.store.pipe(select(getListParamsForm));
 
-  constructor(private store: Store<IStateRedusers>) { }
+  constructor(private store: Store<IStateReducers>) { }
 
   onChangeFormStyle(event: any): void {
     const name = event.target.name;

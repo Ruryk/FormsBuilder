@@ -14,14 +14,14 @@ import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { getStatusAuth } from '../reducers';
 import { LogInSuccessAction, LogInFailtureAction, LogOutAction } from '../reducers/auth/auth.actions';
 
-import { IStateRedusers } from '../reducers';
+import { IStateReducers } from '../reducers';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
 
    constructor(
       private http: HttpClient,
-      private store: Store<IStateRedusers>,
+      private store: Store<IStateReducers>,
       private router: Router
    ) { }
 

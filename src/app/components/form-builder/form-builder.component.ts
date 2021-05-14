@@ -13,7 +13,7 @@ import { EBuilderElements } from '../../data/enums';
 import { DeleteRowAction, SetNewRowAction } from '../../reducers/rowStyles/rowStyles.actions';
 import { SetTargetRowAction, SetTargetElemAction } from '../../reducers/target/target.actions';
 
-import { IStateRedusers } from 'src/app/reducers';
+import { IStateReducers } from 'src/app/reducers';
 
 @Component({
   selector: 'app-form-builder',
@@ -54,7 +54,7 @@ export class FormBuilderComponent {
 
   public errorMessage: BehaviorSubject<string>;
 
-  constructor(private store: Store<IStateRedusers>) {
+  constructor(private store: Store<IStateReducers>) {
     this.errorMessage = new BehaviorSubject("");
   }
 
@@ -157,6 +157,7 @@ export class FormBuilderComponent {
     if (elem.localName === EBuilderElements.Select) {
       this.listElems.toArray().forEach(el => {
         el.nativeElement.parentNode.classList.remove('active-elem-form');
+        el.nativeElement.classList.remove('active-elem-form');
       });
       elem.parentNode.parentNode.classList.add('active-elem-form');
     } else {

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { EStylesNames } from 'src/app/data/enums';
 import { SetStyleRowAction } from '../../../reducers/rowStyles/rowStyles.actions';
-import { getListParamsRowForId, IStateRedusers } from 'src/app/reducers';
+import { getListParamsRowForId, IStateReducers } from 'src/app/reducers';
 
 @Component({
   selector: 'app-row-list',
@@ -19,7 +19,7 @@ export class RowListComponent {
 
   public listStylesRow$: Observable<string>;
 
-  constructor(private store: Store<IStateRedusers>) { }
+  constructor(private store: Store<IStateReducers>) { }
 
   ngOnChanges() {
     this.listStylesRow$ = this.store.pipe(select(getListParamsRowForId, { id: this.targetRowId }))

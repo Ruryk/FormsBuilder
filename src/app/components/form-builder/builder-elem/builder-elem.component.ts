@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { IListElemStyleState } from 'src/app/data/interfaces';
 
-import { EBuilderElements } from '../../../data/enums';
+import { EBuilderElements } from 'src/app/data/enums';
 
 @Component({
   selector: 'app-builder-elem',

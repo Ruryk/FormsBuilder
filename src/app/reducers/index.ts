@@ -16,7 +16,7 @@ import * as formStylesSelector from './formStyles/formStyles.selectors';
 import * as rowStylesSelector from './rowStyles/rowStyles.selectors';
 import * as authSelector from './auth/auth.selectors';
 
-export interface IStateRedusers {
+export interface IStateReducers {
    [stylesNodeElem]: IListElemStyleState[];
    [stylesNodeForm]: IListFormStyleState;
    [stylesNodeRow]: IListRowStyleState[];
@@ -24,7 +24,7 @@ export interface IStateRedusers {
    [targetNode]: ITargetId;
 }
 
-export const reducers: ActionReducerMap<IStateRedusers> = {
+export const reducers: ActionReducerMap<IStateReducers> = {
    [stylesNodeElem]: styleReducer,
    [stylesNodeForm]: formStyleReducer,
    [stylesNodeRow]: rowStyleReducer,
@@ -32,11 +32,11 @@ export const reducers: ActionReducerMap<IStateRedusers> = {
    [targetNode]: targetReducer
 };
 
-export const getListStylesElemState = (state: IStateRedusers) => state[stylesNodeElem];
-export const getListStylesFormState = (state: IStateRedusers) => state[stylesNodeForm];
-export const getListStylesRowState = (state: IStateRedusers) => state[stylesNodeRow];
-export const getAuthState = (state: IStateRedusers) => state[authNode];
-export const getTargetState = (state: IStateRedusers) => state[targetNode];
+export const getListStylesElemState = (state: IStateReducers) => state[stylesNodeElem];
+export const getListStylesFormState = (state: IStateReducers) => state[stylesNodeForm];
+export const getListStylesRowState = (state: IStateReducers) => state[stylesNodeRow];
+export const getAuthState = (state: IStateReducers) => state[authNode];
+export const getTargetState = (state: IStateReducers) => state[targetNode];
 
 // Auth Selectors
 export const getStatusAuth = createSelector(
@@ -80,4 +80,4 @@ export const getListParamsElems = createSelector(
    elemStylesSelector.selectParamsElem
 );
 
-export const metaReducers: MetaReducer<IStateRedusers>[] = !environment.production ? [] : [];
+export const metaReducers: MetaReducer<IStateReducers>[] = !environment.production ? [] : [];

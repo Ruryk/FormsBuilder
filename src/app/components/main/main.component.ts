@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getListParamsElems, getListParamsForm, getListParamsRows, getTargetElem, IStateRedusers } from 'src/app/reducers';
+import { getListParamsElems, getListParamsForm, getListParamsRows, getTargetElem, IStateReducers } from 'src/app/reducers';
 
 import { getTargetRow } from "../../reducers";
 
@@ -16,10 +16,10 @@ import { getTargetRow } from "../../reducers";
 export class MainComponent implements OnInit {
 
   constructor(
-    private store: Store<IStateRedusers>
+    private store: Store<IStateReducers>
   ) { }
 
-  public listStylesElem$: Observable<string> = this.store.pipe(select(getListParamsElems));
+  public listStylesElem$: Observable<string> = this.store.select(getListParamsElems);
   public listStylesRow$: Observable<string> = this.store.pipe(select(getListParamsRows));
   public listStylesForm$: Observable<string> = this.store.pipe(select(getListParamsForm));
   public targetElemId: Observable<number> = this.store.pipe(select(getTargetElem));

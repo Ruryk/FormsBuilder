@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+
 import { StoreModule } from '@ngrx/store';
-import { AuthGuard } from './auth-guard/auth-guard';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveComponentModule } from '@ngrx/component';
 
@@ -42,14 +41,6 @@ import { RowListComponent } from './components/form-styles/row-list/row-list.com
 import { ElemListComponent } from './components/form-styles/elem-list/elem-list.component';
 import { BuilderElemComponent } from './components/form-builder/builder-elem/builder-elem.component';
 
-const appRoutes: Routes = [
-  { path: '', component: MainComponent },
-  // { path: '', component: MainComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
-  { path: 'registration', component: RegistrationComponent },
-  { path: '**', component: ErrorComponent }
-]
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +65,6 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),
     FormsModule,
     BrowserAnimationsModule,
     MatSliderModule,
@@ -99,7 +89,6 @@ const appRoutes: Routes = [
     StoreRouterConnectingModule.forRoot(),
     ReactiveComponentModule
   ],
-  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,13 +4,21 @@ export const CPxNamesStyles = [
    'width',
    'height',
    'borderWidth',
-   'color', ,
-   'borderStyle',
    'fontSize',
    'fontWeight',
-   'backgroundColor',
-   'borderColor',
    'minHeight'
+];
+
+export const CNamesStyles = [
+   "width",
+   "height",
+   "borderWidth",
+   "color",
+   "borderStyle",
+   "borderColor",
+   "fontSize",
+   "fontWeight",
+   "backgroundColor"
 ];
 
 export const ChttpOptions = {

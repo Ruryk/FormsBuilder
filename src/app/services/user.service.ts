@@ -10,14 +10,14 @@ import { BehaviorSubject } from 'rxjs';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
 import { RegisterSuccessAction, RegisterFailtureAction } from '../reducers/auth/auth.actions';
-import { IStateRedusers } from '../reducers';
+import { IStateReducers } from '../reducers';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
 
    constructor(
       private http: HttpClient,
-      private store: Store<IStateRedusers>,
+      private store: Store<IStateReducers>,
       private router: Router
    ) { }
 
