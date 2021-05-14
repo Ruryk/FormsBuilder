@@ -6,15 +6,6 @@ import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveComponentModule } from '@ngrx/component';
 
-import { MatSliderModule } from '@angular/material/slider';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatGridListModule } from '@angular/material/grid-list';
-
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -40,6 +31,8 @@ import { FormListComponent } from 'src/app/components/form-styles/form-list/form
 import { RowListComponent } from 'src/app/components/form-styles/row-list/row-list.component';
 import { ElemListComponent } from 'src/app/components/form-styles/elem-list/elem-list.component';
 import { BuilderElemComponent } from 'src/app/components/form-builder/builder-elem/builder-elem.component';
+
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { environment } from 'src/environments/environment';
 
@@ -69,15 +62,8 @@ import { environment } from 'src/environments/environment';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatSliderModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatExpansionModule,
-    DragDropModule,
+    SharedModule,
     HttpClientModule,
-    MatGridListModule,
     SweetAlert2Module.forRoot(),
     StoreModule.forRoot(reducers, {
       metaReducers,
