@@ -13,7 +13,7 @@ export class AppComponent {
 
   get loggedIn(): boolean {
     return this.authenticationService.isLoggedIn();
-  };
+  }
 
   constructor(private authenticationService: AuthenticationService) { }
 

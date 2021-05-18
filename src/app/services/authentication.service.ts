@@ -13,6 +13,8 @@ import { ChttpOptions } from 'src/app/data/constantes';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
 
+  public auth: boolean;
+
    constructor(
       private http: HttpClient,
       private store: Store<IStateReducers>,
@@ -20,9 +22,9 @@ export class AuthenticationService {
    ) { }
 
    isLoggedIn(): boolean {
-      let auth: boolean = false;
-      this.store.pipe(select(getStatusAuth)).subscribe(sub => auth = sub);
-      return auth;
+      this.auth = false;
+      this.store.pipe(select(getStatusAuth)).subscribe(sub => this.auth = sub);
+      return this.auth;
    }
 
    logout(): void {
