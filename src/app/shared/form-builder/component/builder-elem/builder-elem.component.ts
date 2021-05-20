@@ -1,44 +1,55 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit } from '@angular/core';
+import { ControlValueAccessor, ControlContainer, FormGroupDirective, FormGroup } from '@angular/forms';
 import { IListElemStyleState } from 'src/app/data/interfaces';
 
 import { EBuilderElements } from 'src/app/data/enums';
+
 
 @Component({
   selector: 'app-builder-elem',
   templateUrl: './builder-elem.component.html',
   styleUrls: ['./builder-elem.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useExisting: FormGroupDirective
+    }
+  ]
 })
 
-export class BuilderElemComponent implements OnChanges, ControlValueAccessor {
+export class BuilderElemComponent implements OnChanges, OnInit {
 
   @Input() listStylesElem: IListElemStyleState[];
   @Input() elemId: number;
   @Input() elemCharacter: string;
 
+  @Input() form: FormGroup;
+  @Input() formElemCounter: number;
+  @Input() checkValidation: boolean;
+  validationWindow: boolean;
+
+  name: string;
+
   public elemStyles;
 
   public EBuilderElements = EBuilderElements;
 
-  constructor() { }
+  constructor() {
+
+  }
+  ngOnInit(): void {
+    this.name = 'name-' + this.formElemCounter;
+  }
+
+  focusOut(): void {
+    this.validationWindow = true;
+  }
 
   ngOnChanges(): void {
     this.elemStyles = this.listStylesElem.find(el => el.id === this.elemId).params;
+    if (this.checkValidation) {
+      this.validationWindow = true;
+    }
   }
-
-  writeValue(obj: any): void {
-
-  }
-  registerOnChange(fn: any): void {
-
-  }
-  registerOnTouched(fn: any): void {
-
-  }
-  setDisabledState(isDisabled: boolean): void {
-
-  }
-
 }
-

@@ -1,14 +1,17 @@
-import {Component, Input, ChangeDetectionStrategy, ElementRef, QueryList, ViewChildren, HostListener, ViewChild} from '@angular/core';
-import {moveItemInArray, CdkDragDrop} from '@angular/cdk/drag-drop';
-import {SwalComponent} from '@sweetalert2/ngx-sweetalert2';
-import {Store} from '@ngrx/store';
-import {BehaviorSubject} from 'rxjs';
+import { Component, Input, ChangeDetectionStrategy, ElementRef, QueryList, ViewChildren, HostListener, ViewChild, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
-import {BuilderElemComponent} from 'src/app/shared/form-builder/component/builder-elem/builder-elem.component';
-import {IListRowStyleState, IListElemStyleState, IListFormStyleState, IListElements, IBtnStatus} from 'src/app/data/interfaces';
-import {IStateReducers} from 'src/app/reducers';
-import {RowActionService} from 'src/app/services/row-action.service';
-import {ElemActionService} from 'src/app/services/elem-action.service';
+import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import { Store } from '@ngrx/store';
+import { BehaviorSubject } from 'rxjs';
+
+import { BuilderElemComponent } from 'src/app/shared/form-builder/component/builder-elem/builder-elem.component';
+import { IListRowStyleState, IListElemStyleState, IListFormStyleState, IListElements, IBtnStatus } from 'src/app/data/interfaces';
+import { IStateReducers } from 'src/app/reducers';
+import { RowActionService } from 'src/app/services/row-action.service';
+import { ElemActionService } from 'src/app/services/elem-action.service';
+import { EBuilderElements } from 'src/app/data/enums';
 
 @Component({
   selector: 'app-form-builder',
@@ -17,7 +20,10 @@ import {ElemActionService} from 'src/app/services/elem-action.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class FormBuilderComponent {
+export class FormBuilderComponent implements OnInit {
+  public formGroup: FormGroup;
+  public formElemCounter: number = 0;
+  public checkValidation: boolean = false;
 
   public basket: Array<IListElements[]> = [[]];
 
@@ -33,7 +39,7 @@ export class FormBuilderComponent {
   @Input() listStylesRow: IListRowStyleState[];
 
   @ViewChildren('exampleList') listRows: QueryList<ElementRef>;
-  @ViewChildren(BuilderElemComponent, {read: ElementRef}) listElems: QueryList<ElementRef>;
+  @ViewChildren(BuilderElemComponent, { read: ElementRef }) listElems: QueryList<ElementRef>;
 
   @ViewChild('popupError') popupError: SwalComponent;
 
@@ -50,8 +56,29 @@ export class FormBuilderComponent {
     private store: Store<IStateReducers>,
     private rowAction: RowActionService,
     private elemAction: ElemActionService,
+    private fb: FormBuilder
   ) {
     this.errorMessage = new BehaviorSubject('');
+  }
+
+  ngOnInit(): void {
+    this.formGroup = this.fb.group({});
+  }
+
+  submitForm(event: any): void {
+    this.checkValidation = true;
+
+    if (this.formGroup.valid) {
+      let data = [...event.target];
+      data = data.reduce((acc, item) => {
+        const name = item.getAttribute('ng-reflect-name');
+        (name) ? acc[name] = item.value : acc
+        return acc;
+      }, {});
+      console.log(data);
+    } else {
+      console.log("Form is " + this.formGroup.status);
+    }
   }
 
   getExampleListStyle(id: number): any {
@@ -89,11 +116,34 @@ export class FormBuilderComponent {
   }
 
   deleteElem(): void {
-    this.elemAction.deleteElem(this.basket, this.listElems, this.deleteBtnStatus);
+    this.elemAction.deleteElem(this.basket, this.listElems, this.deleteBtnStatus, this.formGroup);
+
+    this.checkValidation = false;
   }
 
   addElemToBasket(event: CdkDragDrop<any[]>, containerID: number): void {
     this.elemAction.addElemToBasket(event, this.basket, containerID, this.errorMessage, this.popupError);
+  }
+
+  addControl(character: string): void {
+    this.formElemCounter++;
+    switch (character) {
+      case EBuilderElements.Button:
+        this.formGroup.addControl(`name-${this.formElemCounter}`, new FormControl(null));
+        break;
+
+      case EBuilderElements.Select:
+        this.formGroup.addControl(`name-${this.formElemCounter}`, new FormControl(null, [Validators.required]));
+        break;
+
+      case EBuilderElements.CheckBox:
+        this.formGroup.addControl(`name-${this.formElemCounter}`, new FormControl(null, [Validators.required]));
+        break;
+
+      default:
+        this.formGroup.addControl(`name-${this.formElemCounter}`, new FormControl(null, [Validators.minLength(2), Validators.required]));
+        break;
+    }
   }
 
   drop(event: CdkDragDrop<any[]>): void {
@@ -102,6 +152,11 @@ export class FormBuilderComponent {
       moveItemInArray(this.basket[containerID], event.previousIndex, event.currentIndex);
     } else {
       this.addElemToBasket(event, containerID);
+
+      const character: string = event.previousContainer.data[event.previousIndex].character;
+      this.addControl(character);
+
+      this.checkValidation = false;
     }
   }
 

@@ -1,32 +1,48 @@
 <ng-container [ngSwitch]="elemCharacter">
   <ng-container *ngSwitchCase="EBuilderElements.Button">
-    <button [attr.data-id]="elemId" class="element-form" [type]="elemStyles.type" [style]="elemStyles.styles">{{
+    <button [attr.data-id]="elemId" class="element-form" name="submit" [type]="elemStyles.type"
+      [style]="elemStyles.styles">{{
       elemStyles.text }}</button>
   </ng-container>
 
   <ng-container *ngSwitchCase="EBuilderElements.Input">
     <input [attr.data-id]="elemId" class="element-form" [type]="elemStyles.type" [name]="elemStyles.name"
-           [placeholder]="elemStyles.placeholder" [style]="elemStyles.styles">
+      [formControlName]="name" [placeholder]="elemStyles.placeholder" [style]="elemStyles.styles"
+      (focusout)="focusOut()">
+    <ng-container *ngIf="!form.get(name).valid && validationWindow">
+      <p class="validation-message" [ngStyle]="{'color': check}">This elem is {{ form.get(name).status }}</p>
+    </ng-container>
   </ng-container>
 
   <ng-container *ngSwitchCase="EBuilderElements.TextArea">
-      <textarea [attr.data-id]="elemId" class="element-form" [name]="elemStyles.name" [style]="elemStyles.styles"
-                [placeholder]="elemStyles.placeholder">{{ elemStyles.text }}</textarea>
+    <textarea [attr.data-id]="elemId" class="element-form" [name]="elemStyles.name" [style]="elemStyles.styles"
+      [placeholder]="elemStyles.placeholder" (focusout)="focusOut()"
+      [formControlName]="name">{{ elemStyles.text }}</textarea>
+    <ng-container *ngIf="!form.get(name).valid && validationWindow">
+      <p class="validation-message" [ngStyle]="{'color': check}">This elem is {{ form.get(name).status }}</p>
+    </ng-container>
   </ng-container>
 
   <ng-container *ngSwitchCase="EBuilderElements.Select">
     <div class="select">
-      <select [attr.data-id]="elemId" class="element-form" name="elemStyles.name" id="'select'+elemId"
-              [style]="elemStyles.styles" [required]="elemStyles.required">
+      <select [attr.data-id]="elemId" class="element-form" [name]="elemStyles.name" id="'select'+elemId"
+        [style]="elemStyles.styles" [required]="elemStyles.required" (focusout)="focusOut()" [formControlName]="name">
         <option value="" selected disabled>{{ elemStyles.defaultOption }}</option>
         <option *ngFor="let option of elemStyles.options" [value]="option">{{ option }}
       </select>
     </div>
+    <ng-container *ngIf="!form.get(name).valid && validationWindow">
+      <p class="validation-message" [ngStyle]="{'color': check}">This elem is {{ form.get(name).status }}</p>
+    </ng-container>
   </ng-container>
 
   <ng-container *ngSwitchCase="EBuilderElements.CheckBox">
     <input [attr.data-id]="elemId" class="element-form" type="checkbox" [name]="elemStyles.name"
-           [id]="'checkbox'+elemId" [style]="elemStyles.styles" [value]="elemStyles.value">
+      [id]="'checkbox'+elemId" [style]="elemStyles.styles" [value]="elemStyles.value" (focusout)="focusOut()"
+      [formControlName]="name">
     <label [for]="'checkbox'+elemId">{{ elemStyles.label }}</label>
+    <ng-container *ngIf="!form.get(name).valid && validationWindow">
+      <p class="validation-message" [ngStyle]="{'color': check}">This elem is {{ form.get(name).status }}</p>
+    </ng-container>
   </ng-container>
 </ng-container>

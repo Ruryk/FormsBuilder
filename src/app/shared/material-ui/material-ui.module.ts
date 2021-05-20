@@ -9,6 +9,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [],
@@ -22,6 +23,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatExpansionModule,
     DragDropModule,
     MatGridListModule,
+    MatTooltipModule
   ],
   exports: [
     MatSliderModule,
@@ -32,6 +34,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatExpansionModule,
     DragDropModule,
     MatGridListModule,
+    MatTooltipModule
   ]
 })
 export class MaterialUiModule { }

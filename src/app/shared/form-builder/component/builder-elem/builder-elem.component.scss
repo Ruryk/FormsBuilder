@@ -9,3 +9,11 @@ select {
 .select {
    @include custom-select;
 }
+
+p.validation-message {
+   position: absolute;
+   top: -40px;
+   background-color: red;
+   padding: 10px;
+   color: white;
+}

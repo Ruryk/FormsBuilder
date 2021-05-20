@@ -71,3 +71,12 @@ form {
 button:active {
    @include active-button;
 }
+
+app-builder-elem {
+   position: relative;
+}
+
+app-builder-elem p {
+   position: absolute;
+   top: -30px;
+}
