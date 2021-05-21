@@ -8,17 +8,17 @@ const initialState: ITargetId = {
    targetElemId: null
 };
 
-export const targetReducer = (state = initialState, action: TargetActions) => {
-   switch (action.type) {
+export const targetReducer = (state = initialState, { type, payload }: TargetActions) => {
+   switch (type) {
       case targetActionsType.setTargetRow:
          return {
             ...state,
-            targetRowId: action.payload.id
+            targetRowId: payload.id
          };
       case targetActionsType.setTargetElem:
          return {
             ...state,
-            targetElemId: action.payload.id
+            targetElemId: payload.id
          };
       default:
          return state;

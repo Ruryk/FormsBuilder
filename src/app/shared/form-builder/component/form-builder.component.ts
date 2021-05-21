@@ -85,7 +85,7 @@ export class FormBuilderComponent implements OnInit {
     return this.listStylesRow.find(el => el.id === id).styles;
   }
 
-  getRowID(order: any): number {
+  getRowID(order: number): number {
     return this.listStylesRow[order].id;
   }
 

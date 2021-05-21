@@ -1,4 +1,4 @@
-import {Component, Input, ChangeDetectionStrategy, OnChanges} from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-form-styles',
@@ -7,7 +7,7 @@ import {Component, Input, ChangeDetectionStrategy, OnChanges} from '@angular/cor
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class FormStylesComponent implements OnChanges{
+export class FormStylesComponent implements OnChanges {
 
   public changeCount = 0;
   public panelOpenState = false;

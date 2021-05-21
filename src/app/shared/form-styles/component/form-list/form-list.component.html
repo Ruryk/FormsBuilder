@@ -1,89 +1,90 @@
 <div class="styles-container">
   <table>
     <tbody>
-    <tr>
-      <th>Parameter</th>
-      <th>Value</th>
-    </tr>
-    <ng-container *ngFor="let item of (listStylesForm$ | ngrxPush) | keyvalue">
-      <ng-container [ngSwitch]="item.key">
-        <tr *ngSwitchCase="EStylesNames.BorderWidth">
-          <td>{{ item.key }} :</td>
-          <td>
-            <input type="number" [value]="(item.value).slice(0,-2)" [name]="item.key"
-                   (change)="onChangeFormStyle($event)"></td>
-        </tr>
+      <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+      </tr>
+      <ng-container *ngFor="let item of (listStylesForm$ | ngrxPush) | keyvalue">
+        <ng-container [ngSwitch]="item.key">
+          <tr *ngSwitchCase="EStylesNames.BorderWidth">
+            <td>{{ item.key }} :</td>
+            <td>
+              <input type="number" [value]="(item.value).slice(0,-2)" [name]="item.key"
+                (change)="onChangeFormStyle($event)">
+            </td>
+          </tr>
 
-        <tr *ngSwitchCase="EStylesNames.Color">
-          <td>{{ item.key }} :</td>
-          <td>
-            <input type="color" [value]="item.value" [name]="item.key" (change)="onChangeFormStyle($event)">
-          </td>
-        </tr>
+          <tr *ngSwitchCase="EStylesNames.Color">
+            <td>{{ item.key }} :</td>
+            <td>
+              <input type="color" [value]="item.value" [name]="item.key" (change)="onChangeFormStyle($event)">
+            </td>
+          </tr>
 
-        <tr *ngSwitchCase="EStylesNames.BorderColor">
-          <td>{{ item.key }} :</td>
-          <td><input type="color" [value]="item.value" [name]="item.key" (change)="onChangeFormStyle($event)">
-          </td>
-        </tr>
+          <tr *ngSwitchCase="EStylesNames.BorderColor">
+            <td>{{ item.key }} :</td>
+            <td><input type="color" [value]="item.value" [name]="item.key" (change)="onChangeFormStyle($event)">
+            </td>
+          </tr>
 
-        <tr *ngSwitchCase="EStylesNames.BorderStyle">
-          <td>{{ item.key }} :</td>
-          <td><select [name]="item.key" (change)="onChangeFormStyle($event)">
-            <option value="" selected disabled hidden>Choose here</option>
-            <option value="none">none</option>
-            <option value="hidden">hidden</option>
-            <option value="dotted">dotted</option>
-            <option value="dashed">dashed</option>
-            <option value="solid">solid</option>
-            <option value="double">double</option>
-            <option value="groove">groove</option>
-            <option value="ridge">ridge</option>
-            <option value="inset">inset</option>
-            <option value="outset">outset</option>
-          </select></td>
-        </tr>
+          <tr *ngSwitchCase="EStylesNames.BorderStyle">
+            <td>{{ item.key }} :</td>
+            <td><select [name]="item.key" (change)="onChangeFormStyle($event)">
+                <option value="" selected disabled hidden>Choose here</option>
+                <option value="none">none</option>
+                <option value="hidden">hidden</option>
+                <option value="dotted">dotted</option>
+                <option value="dashed">dashed</option>
+                <option value="solid">solid</option>
+                <option value="double">double</option>
+                <option value="groove">groove</option>
+                <option value="ridge">ridge</option>
+                <option value="inset">inset</option>
+                <option value="outset">outset</option>
+              </select></td>
+          </tr>
 
-        <tr *ngSwitchCase="EStylesNames.FontSize">
-          <td>{{ item.key }} :</td>
-          <td><input type="number" [value]="(item.value).slice(0,-2)" [name]="item.key"
-                     (change)="onChangeFormStyle($event)"></td>
-        </tr>
+          <tr *ngSwitchCase="EStylesNames.FontSize">
+            <td>{{ item.key }} :</td>
+            <td><input type="number" [value]="(item.value).slice(0,-2)" [name]="item.key"
+                (change)="onChangeFormStyle($event)"></td>
+          </tr>
 
-        <tr *ngSwitchCase="EStylesNames.Width">
-          <td>{{ item.key }} :</td>
-          <td><input type="number" [value]="(item.value).slice(0,-2)" [name]="item.key"
-                     (change)="onChangeFormStyle($event)"></td>
-        </tr>
+          <tr *ngSwitchCase="EStylesNames.Width">
+            <td>{{ item.key }} :</td>
+            <td><input type="number" [value]="(item.value).slice(0,-2)" [name]="item.key"
+                (change)="onChangeFormStyle($event)"></td>
+          </tr>
 
-        <tr *ngSwitchCase="EStylesNames.FontWeight">
-          <td>{{ item.key }} :</td>
-          <td><select [name]="item.key" (change)="onChangeFormStyle($event)">
-            <option value="" selected disabled hidden>Choose here</option>
-            <option value="bold">bold</option>
-            <option value="bolder">bolder</option>
-            <option value="lighter">lighter</option>
-            <option value="normal">normal</option>
-            <option value="100">100</option>
-            <option value="200">200</option>
-            <option value="300">300</option>
-            <option value="400">400</option>
-            <option value="500">500</option>
-            <option value="600">600</option>
-            <option value="700">700</option>
-            <option value="800">800</option>
-            <option value="900">900</option>
-          </select></td>
-        </tr>
+          <tr *ngSwitchCase="EStylesNames.FontWeight">
+            <td>{{ item.key }} :</td>
+            <td><select [name]="item.key" (change)="onChangeFormStyle($event)">
+                <option value="" selected disabled hidden>Choose here</option>
+                <option value="bold">bold</option>
+                <option value="bolder">bolder</option>
+                <option value="lighter">lighter</option>
+                <option value="normal">normal</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="300">300</option>
+                <option value="400">400</option>
+                <option value="500">500</option>
+                <option value="600">600</option>
+                <option value="700">700</option>
+                <option value="800">800</option>
+                <option value="900">900</option>
+              </select></td>
+          </tr>
 
-        <tr *ngSwitchCase="EStylesNames.BackgroundColor">
-          <td>{{ item.key }} :</td>
-          <td><input type="color" [value]="item.value" [name]="item.key" (change)="onChangeFormStyle($event)">
-          </td>
-        </tr>
+          <tr *ngSwitchCase="EStylesNames.BackgroundColor">
+            <td>{{ item.key }} :</td>
+            <td><input type="color" [value]="item.value" [name]="item.key" (change)="onChangeFormStyle($event)">
+            </td>
+          </tr>
 
+        </ng-container>
       </ng-container>
-    </ng-container>
     </tbody>
   </table>
 </div>

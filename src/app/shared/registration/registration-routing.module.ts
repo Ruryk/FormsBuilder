@@ -1,10 +1,10 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import {RegistrationComponent} from 'src/app/shared/registration/component/registration.component';
+import { RegistrationComponent } from 'src/app/shared/registration/component/registration.component';
 
 const routes: Routes = [
-  {path: '', component: RegistrationComponent},
+  { path: '', component: RegistrationComponent },
 ];
 
 @NgModule({

@@ -1,12 +1,12 @@
-import {ElementRef, Injectable, QueryList} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {BehaviorSubject} from 'rxjs';
-import {SwalComponent} from '@sweetalert2/ngx-sweetalert2';
+import { ElementRef, Injectable, QueryList } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { BehaviorSubject } from 'rxjs';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
-import {IStateReducers} from 'src/app/reducers';
-import {DeleteRowAction, SetNewRowAction} from 'src/app/reducers/rowStyles/rowStyles.actions';
-import {SetTargetRowAction} from 'src/app/reducers/target/target.actions';
-import {IBtnStatus, IListElements} from 'src/app/data/interfaces';
+import { IStateReducers } from 'src/app/reducers';
+import { DeleteRowAction, SetNewRowAction } from 'src/app/reducers/rowStyles/rowStyles.actions';
+import { SetTargetRowAction } from 'src/app/reducers/target/target.actions';
+import { IBtnStatus, IListElements } from 'src/app/data/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,7 @@ export class RowActionService {
     basket: Array<IListElements[]>
   ): void {
     basket.push([]);
-    this.store.dispatch(new SetNewRowAction({id: this.counterRowID}));
+    this.store.dispatch(new SetNewRowAction({ id: this.counterRowID }));
     this.counterRowID++;
   }
 
@@ -62,7 +62,7 @@ export class RowActionService {
     deleteBtnStatus: IBtnStatus
   ): void {
     basket.splice(positionRow, 1);
-    this.store.dispatch(new DeleteRowAction({id: idRow}));
+    this.store.dispatch(new DeleteRowAction({ id: idRow }));
     deleteBtnStatus.deleteRowBtnStatus = true;
   }
 
@@ -102,7 +102,7 @@ export class RowActionService {
   ): void {
     row.classList.remove('active-row');
     deleteBtnStatus.deleteRowBtnStatus = true;
-    this.store.dispatch(new SetTargetRowAction({id: null}));
+    this.store.dispatch(new SetTargetRowAction({ id: null }));
   }
 
   addClassToTargetRow(

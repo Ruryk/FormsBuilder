@@ -1,10 +1,10 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import {MainComponent} from 'src/app/shared/main/component/main.component';
+import { MainComponent } from 'src/app/shared/main/component/main.component';
 
 const routes: Routes = [
-  {path: '', component: MainComponent},
+  { path: '', component: MainComponent },
 ];
 
 @NgModule({

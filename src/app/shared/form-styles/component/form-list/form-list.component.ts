@@ -19,9 +19,9 @@ export class FormListComponent {
 
   constructor(private store: Store<IStateReducers>) { }
 
-  onChangeFormStyle(event: any): void {
-    const name = event.target.name;
-    const value = event.target.value;
-    this.store.dispatch(new SetStyleFormAction({ param: name, value: value }))
+  onChangeFormStyle({ target }: any): void {
+    const name = target.name;
+    const value = target.value;
+    this.store.dispatch(new SetStyleFormAction({ param: name, value }))
   }
 }

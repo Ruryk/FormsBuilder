@@ -5,14 +5,14 @@ import { ReactiveComponentModule } from '@ngrx/component';
 import { FormStylesComponent } from 'src/app/shared/form-styles/component/form-styles.component';
 import { FormListComponent } from 'src/app/shared/form-styles/component/form-list/form-list.component';
 import { RowListComponent } from 'src/app/shared/form-styles/component/row-list/row-list.component';
-import { ElemListComponent } from 'src/app/shared/form-styles/component/elem-list/elem-list.component';
+import { ElementsListComponent } from 'src/app/shared/form-styles/component/elements-list/elements-list.component';
 import { MaterialUiModule } from 'src/app/shared/material-ui/material-ui.module';
 
 @NgModule({
   declarations: [
     FormListComponent,
     RowListComponent,
-    ElemListComponent,
+    ElementsListComponent,
     FormStylesComponent
   ],
   imports: [
@@ -23,7 +23,7 @@ import { MaterialUiModule } from 'src/app/shared/material-ui/material-ui.module'
   exports: [
     FormListComponent,
     RowListComponent,
-    ElemListComponent,
+    ElementsListComponent,
     FormStylesComponent
   ]
 })

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit } from '@angular/core';
-import { ControlValueAccessor, ControlContainer, FormGroupDirective, FormGroup } from '@angular/forms';
+import { ControlContainer, FormGroupDirective, FormGroup } from '@angular/forms';
 import { IListElemStyleState } from 'src/app/data/interfaces';
 
 import { EBuilderElements } from 'src/app/data/enums';

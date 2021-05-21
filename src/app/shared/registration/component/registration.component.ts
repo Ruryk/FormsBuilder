@@ -1,17 +1,10 @@
-import {Component, ViewChild} from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators,} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
-import {BehaviorSubject} from 'rxjs';
-import {SwalComponent} from '@sweetalert2/ngx-sweetalert2';
+import { Component, ViewChild } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
-import {UserService} from 'src/app/services/user.service';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+import { UserService } from 'src/app/services/user.service';
+import { MyErrorStateMatcher } from 'src/app/services/errorMatcher.service';
 
 @Component({
   selector: 'app-registration',
@@ -20,31 +13,33 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class RegistrationComponent {
-  public emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-
-  public passwordFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(5)
-  ]);
-
-  public matcher = new MyErrorStateMatcher();
+  public formGroup = new FormGroup({
+    emailFormControl: new FormControl('', [
+      Validators.required,
+      Validators.email,
+    ]),
+    passwordFormControl: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5)
+    ])
+  })
 
   public errorMessage: BehaviorSubject<string>;
 
   @ViewChild('popupError') popupError: SwalComponent;
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    public matcher: MyErrorStateMatcher
+  ) {
     this.errorMessage = new BehaviorSubject('');
   }
 
-  sendForm(event: any): void {
+  sendForm(event: MouseEvent): void {
     event.preventDefault();
     const email = event.target[0].value;
     const pass = event.target[1].value;
-    this.userService.registration({ email: email, password: pass}, this.errorMessage, this.popupError);
+    this.userService.registration({ email: email, password: pass }, this.errorMessage, this.popupError);
   }
 
 }

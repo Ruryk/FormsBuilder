@@ -1,17 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators, } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
 import { AuthenticationService } from 'src/app/services/authentication.service';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+import { MyErrorStateMatcher } from 'src/app/services/errorMatcher.service';
 
 @Component({
   selector: 'app-login',
@@ -20,31 +13,34 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class LoginComponent {
+  public formGroup = new FormGroup({
+    emailFormControl: new FormControl('', [
+      Validators.required,
+      Validators.email,
+    ]),
+    passwordFormControl: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5)
+    ])
+  })
 
   @ViewChild('popupError') popupError: SwalComponent;
 
   public errorMessage: BehaviorSubject<string>;
 
-  constructor(private authenticationService: AuthenticationService) {
-    this.errorMessage = new BehaviorSubject("");
+  constructor(
+    private authenticationService: AuthenticationService,
+    public matcher: MyErrorStateMatcher
+  ) {
+    this.errorMessage = new BehaviorSubject('');
   }
 
   sendForm(event: any): void {
     event.preventDefault();
     const email = event.target[0].value;
     const pass = event.target[1].value;
-    this.authenticationService.login({ 'email': email, 'password': pass }, this.errorMessage, this.popupError);
+    this.authenticationService.login({ email: email, password: pass }, this.errorMessage, this.popupError);
   }
 
-  public emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
 
-  public passwordFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(5)
-  ]);
-
-  public matcher = new MyErrorStateMatcher();
 }
