@@ -22,16 +22,15 @@ export class BuilderElemComponent implements OnChanges, OnInit {
 
   @Input() listStylesElement: IListElementStyleState[];
   @Input() elementId: number;
-  @Input() elemCharacter: string;
+  @Input() elementCharacter: string;
 
   @Input() form: FormGroup;
-  @Input() formElemCounter: number;
   @Input() checkValidation: boolean;
   validationWindow: boolean;
 
   public name: string;
 
-  public elemStyles;
+  public elementStyles;
 
   public EBuilderElements = EBuilderElements;
 
@@ -46,7 +45,7 @@ export class BuilderElemComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(): void {
-    this.elemStyles = this.listStylesElement.find(el => el.id === this.elementId).params;
+    this.elementStyles = this.listStylesElement.find(el => el.id === this.elementId).params;
     if (this.checkValidation) {
       this.validationWindow = true;
     }

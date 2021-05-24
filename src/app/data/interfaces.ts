@@ -1,6 +1,6 @@
 export interface ITargetId {
   targetRowId: number;
-  targetElemId: number;
+  targetElementId: number;
 }
 
 export interface IBtnStatus {

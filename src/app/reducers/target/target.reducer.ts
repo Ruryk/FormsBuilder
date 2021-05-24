@@ -5,7 +5,7 @@ export const targetNode = 'target';
 
 const initialState: ITargetId = {
    targetRowId: null,
-   targetElemId: null
+   targetElementId: null
 };
 
 export const targetReducer = (state = initialState, { type, payload }: TargetActions) => {
@@ -18,7 +18,7 @@ export const targetReducer = (state = initialState, { type, payload }: TargetAct
       case targetActionsType.setTargetElement:
          return {
             ...state,
-            targetElemId: payload.id
+            targetElementId: payload.id
          };
       default:
          return state;

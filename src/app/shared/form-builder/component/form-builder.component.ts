@@ -111,7 +111,7 @@ export class FormBuilderComponent implements OnInit {
   /**
    * Elem Actions ===================================================================
    */
-  setActiveElem(elem: any): void {
+  setActiveElem(elem: HTMLElement): void {
     this.elemAction.setActiveElem(elem, this.deleteBtnStatus, this.listElems);
   }
 

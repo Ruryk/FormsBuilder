@@ -19,12 +19,12 @@ export class RowListComponent implements OnChanges {
 
   public EStylesNames = EStylesNames;
 
-  public listStylesRow: Observable<IListRowStyleState>;
+  public listStylesRow$: Observable<IListRowStyleState>;
 
   constructor(private store: Store<IStateReducers>) { }
 
   ngOnChanges(): void {
-    this.listStylesRow = this.store.pipe(select(getListParamsRowForId, { id: this.targetRowId })).pipe(map(i => i[0]));
+    this.listStylesRow$ = this.store.pipe(select(getListParamsRowForId, { id: this.targetRowId })).pipe(map(i => i[0]));
   }
 
   onChangeRowStyle({ target }: any): void {

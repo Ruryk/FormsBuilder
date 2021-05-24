@@ -1,11 +1,11 @@
-<div [id]="(listStyles | ngrxPush).id" class="styles-container" *ngIf="listStyles | ngrxPush">
+<div [id]="(listStyles$ | ngrxPush).id" class="styles-container" *ngIf="listStyles$ | ngrxPush">
   <table>
     <tbody>
       <tr>
         <th>Parameter</th>
         <th>Value</th>
       </tr>
-      <ng-container *ngFor="let item of (listStyles | ngrxPush).params | keyvalue">
+      <ng-container *ngFor="let item of (listStyles$ | ngrxPush).params | keyvalue">
         <ng-container [ngSwitch]="item.key">
 
           <ng-container *ngSwitchCase="EParamsNames.Placeholder">
@@ -32,7 +32,7 @@
 
           <ng-container *ngSwitchCase="EParamsNames.Type">
             <tr>
-              <ng-container [ngSwitch]="(listStyles | ngrxPush).params.character">
+              <ng-container [ngSwitch]="(listStyles$ | ngrxPush).params.character">
                 <ng-container *ngSwitchCase="EBuilderElements.Button">
                   <td>{{ item.key }} :</td>
                   <td>
@@ -226,6 +226,6 @@
   </table>
 </div>
 
-<div *ngIf="!(listStyles | ngrxPush)">
+<div *ngIf="!(listStyles$ | ngrxPush)">
   Select Active Elem
 </div>

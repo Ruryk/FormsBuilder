@@ -24,12 +24,12 @@ export class ElementsListComponent implements OnChanges {
 
   @Input() targetElementId: number;
 
-  public listStyles: Observable<IListElementStyleState>;
+  public listStyles$: Observable<IListElementStyleState>;
 
   constructor(private store: Store<IStateReducers>) { }
 
   ngOnChanges(): void {
-    this.listStyles = this.store.pipe(select(getListParamsElemForId, { id: this.targetElementId })).pipe(map(i => i[0]));
+    this.listStyles$ = this.store.pipe(select(getListParamsElemForId, { id: this.targetElementId })).pipe(map(i => i[0]));
   }
 
   onChange({ target }: any): void {

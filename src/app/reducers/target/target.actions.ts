@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 export enum targetActionsType {
-   setTargetElement = '[TARGET] setTargetElem',
+   setTargetElement = '[TARGET] setTargetElement',
    setTargetRow = '[TARGET] setTargetRow'
 }
 

@@ -108,3 +108,10 @@ export const CListStandartParams = {
     label: 'Checked Me!'
   }
 };
+
+export const CListRowStyles = {
+  minHeight: '50px',
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  alignItems: 'center'
+}

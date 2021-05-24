@@ -72,9 +72,6 @@ export class ElemActionService {
     const elemId = Number(elem.dataset.id);
     const containerElem = elem.parentNode;
 
-    console.log(elem.firstElementChild.getAttribute('ng-reflect-name'));
-
-
     formGroup.removeControl(`${elem.firstElementChild.getAttribute('ng-reflect-name')}`);
 
     containerElem.remove();

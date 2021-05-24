@@ -1,18 +1,14 @@
 import { StyleActions, styleActionsType } from 'src/app/reducers/row-styles/row-styles.actions';
 
-export const stylesNodeRow = 'rowStyles';
 import { IListRowStyleState } from 'src/app/data/interfaces';
-import { CPxNamesStyles } from 'src/app/data/constantes';
+import { CPxNamesStyles, CListRowStyles } from 'src/app/data/constantes';
+
+export const stylesNodeRow = 'rowStyles';
 
 const initialState: IListRowStyleState[] = [
    {
       id: 0,
-      styles: {
-         minHeight: '50px',
-         flexDirection: 'row',
-         justifyContent: 'space-around',
-         alignItems: 'center'
-      }
+      styles: CListRowStyles
    }
 ];
 
@@ -23,12 +19,7 @@ export const rowStyleReducer = (state = initialState, action: StyleActions) => {
             ...state,
             {
                id: action.payload.id,
-               styles: {
-                  minHeight: '50px',
-                  flexDirection: 'row',
-                  justifyContent: 'space-around',
-                  alignItems: 'center'
-               }
+               styles: CListRowStyles
             }
          ];
       case styleActionsType.setParamRow:
