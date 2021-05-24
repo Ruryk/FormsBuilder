@@ -73,6 +73,7 @@ export class ElemActionService {
     const containerElem = elem.parentNode;
 
     formGroup.removeControl(`${elem.firstElementChild.getAttribute('ng-reflect-name')}`);
+
     containerElem.remove();
     this.deleteElemFromBasket(elemId, basket, deleteBtnStatus);
     this.store.dispatch(new SetTargetElemAction({ id: null }));

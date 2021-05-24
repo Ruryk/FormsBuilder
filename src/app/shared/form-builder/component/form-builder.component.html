@@ -13,7 +13,7 @@
 
   <div class="example-container">
     <h3>Form</h3>
-    <form action="" [style]="listStylesForm" [(formGroup)]="formGroup" (submit)="submitForm($event)">
+    <form action="" [style]="listStylesForm" [formGroup]="formGroup" (submit)="submitForm($event)">
       <ng-container *ngFor="let item of basket;let i = index">
         <div #exampleList cdkDropListGroup cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="basket"
           class="example-list" (cdkDropListDropped)="drop($event)" [id]="getRowID(i)"

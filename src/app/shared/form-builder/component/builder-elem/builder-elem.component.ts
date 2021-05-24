@@ -35,9 +35,8 @@ export class BuilderElemComponent implements OnChanges, OnInit {
 
   public EBuilderElements = EBuilderElements;
 
-  constructor() {
+  constructor() { }
 
-  }
   ngOnInit(): void {
     this.name = 'name-' + this.formElemCounter;
   }
