@@ -1,0 +1,66 @@
+<div class="styles-container" *ngIf="(listStylesRow|ngrxPush)">
+  <table>
+    <tbody>
+      <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+      </tr>
+      <ng-container *ngFor="let item of (listStylesRow|ngrxPush).styles | keyvalue">
+        <ng-container [ngSwitch]="item.key">
+
+          <tr *ngSwitchCase="EStylesNames.MinHeight">
+            <td>{{ item.key }} :</td>
+            <td>
+              <input type="number" [value]="(item.value).slice(0,-2)" [name]="item.key"
+                (change)="onChangeRowStyle($event)">
+            </td>
+          </tr>
+
+          <tr *ngSwitchCase="EStylesNames.FlexDirection">
+            <td>{{ item.key }} :</td>
+            <td>
+              <select [name]="item.key" (change)="onChangeRowStyle($event)">
+                <option value="" selected disabled hidden>Choose here</option>
+                <option value="row">row</option>
+                <option value="column">column</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr *ngSwitchCase="EStylesNames.JustifyContent">
+            <td>{{ item.key }} :</td>
+            <td>
+              <select [name]="item.key" (change)="onChangeRowStyle($event)">
+                <option value="" selected disabled hidden>Choose here</option>
+                <option value="flex-start">flex-start</option>
+                <option value="flex-end">flex-end</option>
+                <option value="center">center</option>
+                <option value="space-between">space-between</option>
+                <option value="space-around">space-around</option>
+                <option value="space-evenly">space-evenly</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr *ngSwitchCase="EStylesNames.AlignItems">
+            <td>{{ item.key }} :</td>
+            <td>
+              <select [name]="item.key" (change)="onChangeRowStyle($event)">
+                <option value="" selected disabled hidden>Choose here</option>
+                <option value="flex-start">flex-start</option>
+                <option value="flex-end">flex-end</option>
+                <option value="center">center</option>
+                <option value="baseline">baseline</option>
+                <option value="stretch">stretch</option>
+              </select>
+            </td>
+          </tr>
+
+        </ng-container>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="!(listStylesRow|ngrxPush)">
+  Select Active Elem
+</div>

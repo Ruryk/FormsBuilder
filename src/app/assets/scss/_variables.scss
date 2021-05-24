@@ -20,111 +20,111 @@ $errorFontSize: 50px;
 
 // Mixins
 @mixin example-box {
-   padding: 5px 10px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   span {
-      border: solid 1px $lightGrey;
-      padding: 10px;
-   }
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    border: solid 1px $lightGrey;
+    padding: 10px;
+  }
 }
 
 @mixin example-list {
-   min-height: 60px;
-   background: transparent;
-   border-radius: 4px;
-   overflow: hidden;
-   display: flex;
-   justify-content: space-around;
-   align-items: center;
-   flex-wrap: wrap;
+  min-height: 60px;
+  background: transparent;
+  border-radius: 4px;
+  overflow: visible;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 @mixin active-row {
-   border: 2px solid $red;
+  border: 2px solid $red;
 }
 
 @mixin active-elem {
-   padding: 5px;
-   border: 1px solid $green;
+  padding: 5px;
+  border: 1px solid $green;
 }
 
 @mixin headers {
-   margin-top: 10px;
-   text-align: center;
+  margin-top: 10px;
+  text-align: center;
 }
 
 @mixin reset-select {
-   -webkit-appearance: none;
-   -moz-appearance: none;
-   -ms-appearance: none;
-   appearance: none;
-   outline: 0;
-   box-shadow: none;
-   border: 0 !important;
-   background-image: none;
-   /* Remove IE arrow */
-   &::-ms-expand {
-      display: none;
-   }
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background-image: none;
+  /* Remove IE arrow */
+  &::-ms-expand {
+    display: none;
+  }
 }
 
 @mixin custom-select {
-   position: relative;
-   display: flex;
-   line-height: 3;
-   overflow: hidden;
-   border-radius: 0.25em;
-   border: 1px solid $black;
-   select {
-      flex: 1;
-      padding: 0 0.5em;
-      color: $black;
-      cursor: pointer;
-   }
-   /* Arrow */
-   &::after {
-      content: "\25BC";
-      position: absolute;
-      top: 0;
-      right: 0;
-      padding: 0 1em;
-      cursor: pointer;
-      pointer-events: none;
-      -webkit-transition: 0.25s all ease;
-      -o-transition: 0.25s all ease;
-      transition: 0.25s all ease;
-   }
-   /* Transition */
-   &:hover::after {
-      color: $black;
-   }
+  position: relative;
+  display: flex;
+  line-height: 3;
+  overflow: hidden;
+  border-radius: 0.25em;
+  border: 1px solid $black;
+  select {
+    flex: 1;
+    padding: 0 0.5em;
+    color: $black;
+    cursor: pointer;
+  }
+  /* Arrow */
+  &::after {
+    content: "\25BC";
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: 0.25s all ease;
+    -o-transition: 0.25s all ease;
+    transition: 0.25s all ease;
+  }
+  /* Transition */
+  &:hover::after {
+    color: $black;
+  }
 }
 
 @mixin active-button {
-   background-color: rgba($black, 0.8) !important;
-   color: $white !important;
+  background-color: rgba($black, 0.8) !important;
+  color: $white !important;
 }
 
 @mixin stylesTable {
-   table {
-      width: 100%;
-      border-collapse: collapse;
-   }
-   /* Zebra striping */
-   tr:nth-of-type(odd) {
-      background: $lightGrey;
-   }
-   th {
-      background: $lightBlack;
-      color: $white;
-      font-weight: bold;
-   }
-   td,
-   th {
-      padding: 6px;
-      border: 1px solid $lightGrey;
-      text-align: left;
-   }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  /* Zebra striping */
+  tr:nth-of-type(odd) {
+    background: $lightGrey;
+  }
+  th {
+    background: $lightBlack;
+    color: $white;
+    font-weight: bold;
+  }
+  td,
+  th {
+    padding: 6px;
+    border: 1px solid $lightGrey;
+    text-align: left;
+  }
 }

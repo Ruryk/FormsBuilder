@@ -1,0 +1,39 @@
+<h2>Form Area</h2>
+<div>
+  <div class="control-form">
+    <button mat-raised-button color="primary" (click)="addRow()">Add Row</button>
+    <button mat-raised-button color="warn" (click)="deleteElem()" [disabled]="deleteBtnStatus.deleteElemBtnStatus">
+      Delete
+      Element
+    </button>
+    <button mat-raised-button color="warn" (click)="deleteRow()" [disabled]="deleteBtnStatus.deleteRowBtnStatus">Delete
+      Row
+    </button>
+  </div>
+
+  <div class="example-container">
+    <h3>Form</h3>
+    <form action="" [style]="listStylesForm" [formGroup]="formGroup" (submit)="submitForm($event)">
+      <ng-container *ngFor="let item of basket;let i = index">
+        <div #exampleList cdkDropListGroup cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="basket"
+          class="example-list" (cdkDropListDropped)="drop($event)" [id]="getRowID(i)"
+          [style]="getExampleListStyle(getRowID(i))" [attr.data-position]="i">
+
+          <div class="example-box" *ngFor="let item of basket[i]" cdkDrag cdkDropList>
+
+            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+
+            <app-builder-elem [attr.data-id]="item.id" [form]="formGroup" [formElemCounter]="formElemCounter"
+              [elemCharacter]="item.character" [elemId]="item.id" [listStylesElem]="listStylesElem"
+              [checkValidation]="checkValidation">
+            </app-builder-elem>
+
+          </div>
+
+        </div>
+      </ng-container>
+    </form>
+  </div>
+</div>
+
+<swal #popupError title="Error" [text]="errorMessage | ngrxPush" icon="error"></swal>

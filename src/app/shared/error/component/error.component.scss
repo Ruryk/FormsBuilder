@@ -1,0 +1,9 @@
+@import "src/app/assets/scss/variables";
+
+.container {
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: $errorFontSize;
+}

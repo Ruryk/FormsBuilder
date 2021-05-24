@@ -1,4 +1,4 @@
-import { StyleActions, styleActionsType } from './elemStyles.actions';
+import { StyleActions, styleActionsType } from 'src/app/reducers/elemStyles/elemStyles.actions';
 import { CListStandartParams } from 'src/app/data/constantes';
 import { IListElemStyleState } from 'src/app/data/interfaces';
 import { CPxNamesStyles } from 'src/app/data/constantes';

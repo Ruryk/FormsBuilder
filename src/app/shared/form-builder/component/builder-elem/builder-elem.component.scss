@@ -1,0 +1,19 @@
+@import "src/app/assets/scss/variables";
+
+/* Reset Select */
+select {
+   @include reset-select;
+}
+
+/* Custom Select */
+.select {
+   @include custom-select;
+}
+
+p.validation-message {
+   position: absolute;
+   top: -40px;
+   background-color: red;
+   padding: 10px;
+   color: white;
+}

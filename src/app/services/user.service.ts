@@ -1,23 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { IUser } from '../data/interfaces';
-import { ChttpOptions } from '../data/constantes';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-
 import { BehaviorSubject } from 'rxjs';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
-import { RegisterSuccessAction, RegisterFailtureAction } from '../reducers/auth/auth.actions';
-import { IStateRedusers } from '../reducers';
+import { IUser } from 'src/app/data/interfaces';
+import { ChttpOptions } from 'src/app/data/constantes';
+import { RegisterSuccessAction, RegisterFailtureAction } from 'src/app/reducers/auth/auth.actions';
+import { IStateReducers } from 'src/app/reducers';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
 
    constructor(
       private http: HttpClient,
-      private store: Store<IStateRedusers>,
+      private store: Store<IStateReducers>,
       private router: Router
    ) { }
 

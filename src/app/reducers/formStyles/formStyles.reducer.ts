@@ -1,4 +1,4 @@
-import { StyleActions, styleActionsType } from './formStyles.actions';
+import { StyleActions, styleActionsType } from 'src/app/reducers/formStyles/formStyles.actions';
 import { IListFormStyleState } from 'src/app/data/interfaces';
 import { CPxNamesStyles } from 'src/app/data/constantes';
 
@@ -14,12 +14,12 @@ const initialState: IListFormStyleState = {
    width: '1000px'
 };
 
-export const formStyleReducer = (state = initialState, action: StyleActions) => {
-   switch (action.type) {
+export const formStyleReducer = (state = initialState, { type, payload }: StyleActions) => {
+   switch (type) {
       case styleActionsType.setParamForm:
          return {
             ...state,
-            [action.payload.param]: CPxNamesStyles.includes(action.payload.param) ? action.payload.value + 'px' : action.payload.value
+            [payload.param]: CPxNamesStyles.includes(payload.param) ? payload.value + 'px' : payload.value
          }
       default:
          return state;

@@ -1,4 +1,4 @@
-import { StyleActions, styleActionsType } from './rowStyles.actions';
+import { StyleActions, styleActionsType } from 'src/app/reducers/rowStyles/rowStyles.actions';
 
 export const stylesNodeRow = 'rowStyles';
 import { IListRowStyleState } from 'src/app/data/interfaces';

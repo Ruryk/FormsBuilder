@@ -1,0 +1,82 @@
+@import "src/app/assets/scss/variables";
+
+h2,
+h3 {
+   @include headers;
+}
+
+.control-form {
+   display: flex;
+   justify-content: flex-start;
+   button {
+      margin: 0 10px;
+   }
+}
+
+form {
+   border: solid 1px $grey;
+   border-radius: 4px;
+   margin: 0 auto;
+}
+
+.example-list {
+   @include example-list;
+}
+
+.example-box {
+   @include example-box;
+   app-builder-elem {
+      padding: 5px 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+}
+
+.cdk-drag-preview {
+   box-sizing: border-box;
+   border-radius: 4px;
+   box-shadow: 0 5px 5px -3px rgba($black, 0.2), 0 8px 10px 1px rgba($black, 0.14), 0 3px 14px 2px rgba($black, 0.12);
+}
+
+.cdk-drag-animating {
+   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+   border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-custom-placeholder {
+   display: flex;
+   background: $placeholderBgColor;
+   border: dotted 3px rgba($grey, $alpha: 1);
+   min-width: 50px;
+   min-height: 30px;
+   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.active-elem-form {
+   @include active-elem;
+}
+
+.active-row {
+   @include active-row;
+}
+
+button:active {
+   @include active-button;
+}
+
+app-builder-elem {
+   position: relative;
+}
+
+app-builder-elem p {
+   position: absolute;
+   top: -30px;
+}

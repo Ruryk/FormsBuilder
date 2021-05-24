@@ -1,34 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { IUser } from '../data/interfaces';
-import { ChttpOptions } from '../data/constantes';
-
 import { select, Store } from '@ngrx/store';
-
 import { Router } from '@angular/router';
-
 import { BehaviorSubject } from 'rxjs';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
-import { getStatusAuth } from '../reducers';
-import { LogInSuccessAction, LogInFailtureAction, LogOutAction } from '../reducers/auth/auth.actions';
-
-import { IStateRedusers } from '../reducers';
+import { getStatusAuth, IStateReducers } from 'src/app/reducers';
+import { LogInSuccessAction, LogInFailtureAction, LogOutAction } from 'src/app/reducers/auth/auth.actions';
+import { IUser } from 'src/app/data/interfaces';
+import { ChttpOptions } from 'src/app/data/constantes';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
 
+  public auth: boolean;
+
    constructor(
       private http: HttpClient,
-      private store: Store<IStateRedusers>,
+      private store: Store<IStateReducers>,
       private router: Router
    ) { }
 
    isLoggedIn(): boolean {
-      let auth: boolean = false;
-      this.store.pipe(select(getStatusAuth)).subscribe(sub => auth = sub);
-      return auth;
+      this.auth = false;
+      this.store.pipe(select(getStatusAuth)).subscribe(sub => this.auth = sub);
+      return this.auth;
    }
 
    logout(): void {
