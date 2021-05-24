@@ -7,10 +7,10 @@ import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 
 import { BuilderElemComponent } from 'src/app/shared/form-builder/component/builder-elem/builder-elem.component';
-import { IListRowStyleState, IListElemStyleState, IListFormStyleState, IListElements, IBtnStatus } from 'src/app/data/interfaces';
+import { IListRowStyleState, IListElementStyleState, IListFormStyleState, IListElements, IBtnStatus } from 'src/app/data/interfaces';
 import { IStateReducers } from 'src/app/reducers';
 import { RowActionService } from 'src/app/services/row-action.service';
-import { ElemActionService } from 'src/app/services/elem-action.service';
+import { ElemActionService } from 'src/app/services/element-action.service';
 import { EBuilderElements } from 'src/app/data/enums';
 
 @Component({
@@ -34,7 +34,7 @@ export class FormBuilderComponent implements OnInit {
 
   public errorMessage: BehaviorSubject<string>;
 
-  @Input() listStylesElem: IListElemStyleState[];
+  @Input() listStylesElement: IListElementStyleState[];
   @Input() listStylesForm: IListFormStyleState[];
   @Input() listStylesRow: IListRowStyleState[];
 
@@ -126,7 +126,6 @@ export class FormBuilderComponent implements OnInit {
   }
 
   addControl(character: string): void {
-    this.formElemCounter++;
     switch (character) {
       case EBuilderElements.Button:
         this.formGroup.addControl(`name-${this.formElemCounter}`, new FormControl(null));
@@ -144,6 +143,7 @@ export class FormBuilderComponent implements OnInit {
         this.formGroup.addControl(`name-${this.formElemCounter}`, new FormControl(null, [Validators.minLength(2), Validators.required]));
         break;
     }
+    this.formElemCounter++;
   }
 
   drop(event: CdkDragDrop<any[]>): void {

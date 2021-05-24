@@ -15,7 +15,7 @@ export const targetReducer = (state = initialState, { type, payload }: TargetAct
             ...state,
             targetRowId: payload.id
          };
-      case targetActionsType.setTargetElem:
+      case targetActionsType.setTargetElement:
          return {
             ...state,
             targetElemId: payload.id

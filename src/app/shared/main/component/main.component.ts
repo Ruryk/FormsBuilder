@@ -1,8 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
-import { getListParamsElems, getListParamsForm, getListParamsRows, getTargetElem, IStateReducers, getTargetRow } from 'src/app/reducers';
+import { getListParamsElements, getListParamsForm, getListParamsRows, getTargetElement, IStateReducers, getTargetRow } from 'src/app/reducers';
 
 @Component({
   selector: 'app-main',
@@ -11,21 +12,28 @@ import { getListParamsElems, getListParamsForm, getListParamsRows, getTargetElem
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
+
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private store: Store<IStateReducers>
   ) { }
 
-  public listStylesElem$: Observable<string> = this.store.select(getListParamsElems);
+  public listStylesElement$: Observable<string> = this.store.select(getListParamsElements);
   public listStylesRow$: Observable<string> = this.store.pipe(select(getListParamsRows));
   public listStylesForm$: Observable<string> = this.store.pipe(select(getListParamsForm));
-  public targetElemId: Observable<number> = this.store.pipe(select(getTargetElem));
+  public targetElementId: Observable<number> = this.store.pipe(select(getTargetElement));
   public targetRowId: Observable<number> = this.store.pipe(select(getTargetRow));
 
-  public listStylesElem = [];
+  public listStylesElement = [];
 
   ngOnInit(): void {
-    this.listStylesElem$.subscribe(subs => this.listStylesElem[0] = subs);
+    this.listStylesElement$.pipe(takeUntil(this.unsubscribe$)).subscribe(subs => this.listStylesElement[0] = subs);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

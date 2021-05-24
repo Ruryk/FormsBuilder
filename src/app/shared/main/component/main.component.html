@@ -1,13 +1,13 @@
 <div class="container">
   <div class="container__item" cdkDropListGroup>
     <div>
-      <app-form-builder class="item__component" [listStylesElem]="listStylesElem[0]"
+      <app-form-builder class="item__component" [listStylesElement]="listStylesElement[0]"
         [listStylesForm]="listStylesForm$ | ngrxPush" [listStylesRow]="listStylesRow$ | ngrxPush">
       </app-form-builder>
     </div>
     <div>
       <app-form-elements></app-form-elements>
-      <app-form-styles [targetElemId]="targetElemId | ngrxPush" [targetRowId]="targetRowId | ngrxPush">
+      <app-form-styles [targetElementId]="targetElementId | ngrxPush" [targetRowId]="targetRowId | ngrxPush">
       </app-form-styles>
     </div>
   </div>

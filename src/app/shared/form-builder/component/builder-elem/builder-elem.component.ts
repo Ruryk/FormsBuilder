@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ControlContainer, FormGroupDirective, FormGroup } from '@angular/forms';
-import { IListElemStyleState } from 'src/app/data/interfaces';
+import { IListElementStyleState } from 'src/app/data/interfaces';
 
 import { EBuilderElements } from 'src/app/data/enums';
 
@@ -20,8 +20,8 @@ import { EBuilderElements } from 'src/app/data/enums';
 
 export class BuilderElemComponent implements OnChanges, OnInit {
 
-  @Input() listStylesElem: IListElemStyleState[];
-  @Input() elemId: number;
+  @Input() listStylesElement: IListElementStyleState[];
+  @Input() elementId: number;
   @Input() elemCharacter: string;
 
   @Input() form: FormGroup;
@@ -29,7 +29,7 @@ export class BuilderElemComponent implements OnChanges, OnInit {
   @Input() checkValidation: boolean;
   validationWindow: boolean;
 
-  name: string;
+  public name: string;
 
   public elemStyles;
 
@@ -38,7 +38,7 @@ export class BuilderElemComponent implements OnChanges, OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.name = 'name-' + this.formElemCounter;
+    this.name = 'name-' + this.elementId;
   }
 
   focusOut(): void {
@@ -46,7 +46,7 @@ export class BuilderElemComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(): void {
-    this.elemStyles = this.listStylesElem.find(el => el.id === this.elemId).params;
+    this.elemStyles = this.listStylesElement.find(el => el.id === this.elementId).params;
     if (this.checkValidation) {
       this.validationWindow = true;
     }

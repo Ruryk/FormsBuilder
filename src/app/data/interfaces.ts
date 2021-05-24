@@ -26,7 +26,7 @@ export interface IListElements {
   text?: string;
 }
 
-export interface IListElemStyleState {
+export interface IListElementStyleState {
   id: number;
   params: {
     character: string;

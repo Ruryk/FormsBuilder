@@ -9,11 +9,12 @@ import { getStatusAuth, IStateReducers } from 'src/app/reducers';
 import { LogInSuccessAction, LogInFailtureAction, LogOutAction } from 'src/app/reducers/auth/auth.actions';
 import { IUser } from 'src/app/data/interfaces';
 import { ChttpOptions } from 'src/app/data/constantes';
+import { server } from 'src/app/data/constantes';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
 
-  public auth: boolean;
+   public auth: boolean;
 
    constructor(
       private http: HttpClient,
@@ -47,7 +48,7 @@ export class AuthenticationService {
    }
 
    login(user: IUser, message: BehaviorSubject<string>, item: SwalComponent): void {
-      const response = this.http.post<IUser>(`http://localhost:3000/auth/login`, user, ChttpOptions);
+      const response = this.http.post<IUser>(`${server}/auth/login`, user, ChttpOptions);
       response.subscribe(
          (data) => this.responseHandlerSuccess(data, user),
          (error) => this.responseHandlerError(error, user, message, item)

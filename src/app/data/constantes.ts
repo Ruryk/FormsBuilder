@@ -1,5 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 
+export const server = "http://localhost:3000";
+
 export const CPxNamesStyles = [
   'width',
   'height',

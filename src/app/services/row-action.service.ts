@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
 import { IStateReducers } from 'src/app/reducers';
-import { DeleteRowAction, SetNewRowAction } from 'src/app/reducers/rowStyles/rowStyles.actions';
+import { DeleteRowAction, SetNewRowAction } from 'src/app/reducers/row-styles/row-styles.actions';
 import { SetTargetRowAction } from 'src/app/reducers/target/target.actions';
 import { IBtnStatus, IListElements } from 'src/app/data/interfaces';
 

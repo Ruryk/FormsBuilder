@@ -226,6 +226,6 @@
   </table>
 </div>
 
-<div *ngIf="!listStyles[0]">
+<div *ngIf="!(listStyles | ngrxPush)">
   Select Active Elem
 </div>

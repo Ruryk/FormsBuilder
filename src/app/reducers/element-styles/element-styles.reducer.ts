@@ -1,15 +1,15 @@
-import { StyleActions, styleActionsType } from 'src/app/reducers/elemStyles/elemStyles.actions';
+import { StyleActions, styleActionsType } from 'src/app/reducers/element-styles/element-styles.actions';
 import { CListStandartParams } from 'src/app/data/constantes';
-import { IListElemStyleState } from 'src/app/data/interfaces';
+import { IListElementStyleState } from 'src/app/data/interfaces';
 import { CPxNamesStyles } from 'src/app/data/constantes';
 
-export const stylesNodeElem = 'listParams';
+export const stylesNodeElement = 'listParams';
 
-const initialState: IListElemStyleState[] = [];
+const initialState: IListElementStyleState[] = [];
 
 export const styleReducer = (state = initialState, action: StyleActions) => {
    switch (action.type) {
-      case styleActionsType.setNewElem:
+      case styleActionsType.setNewElement:
          return [
             ...state,
             {
@@ -17,7 +17,7 @@ export const styleReducer = (state = initialState, action: StyleActions) => {
                params: CListStandartParams[action.payload.type]
             }
          ];
-      case styleActionsType.setStyleElem:
+      case styleActionsType.setStyleElement:
          return state.map(el => {
             if (el.id === action.payload.id) {
                return {
@@ -33,7 +33,7 @@ export const styleReducer = (state = initialState, action: StyleActions) => {
             }
             return el;
          });
-      case styleActionsType.setParamElem:
+      case styleActionsType.setParamElement:
          return state.map(el => {
             if (el.id === action.payload.id) {
                return {
@@ -46,7 +46,7 @@ export const styleReducer = (state = initialState, action: StyleActions) => {
             }
             return el;
          });
-      case styleActionsType.deleteElem:
+      case styleActionsType.deleteElement:
          return state.filter(el => el.id !== action.payload.id);
       default:
          return state;

@@ -6,7 +6,7 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="EBuilderElements.Input">
-    <input [attr.data-id]="elemId" class="element-form" [type]="elemStyles.type" [name]="elemStyles.name"
+    <input [attr.data-id]="elementId" class="element-form" [type]="elemStyles.type" [name]="elemStyles.name"
       [formControlName]="name" [placeholder]="elemStyles.placeholder" [style]="elemStyles.styles"
       (focusout)="focusOut()">
     <ng-container *ngIf="!form.get(name)?.valid && validationWindow">
@@ -15,7 +15,7 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="EBuilderElements.TextArea">
-    <textarea [attr.data-id]="elemId" class="element-form" [name]="elemStyles.name" [style]="elemStyles.styles"
+    <textarea [attr.data-id]="elementId" class="element-form" [name]="elemStyles.name" [style]="elemStyles.styles"
       [placeholder]="elemStyles.placeholder" (focusout)="focusOut()"
       [formControlName]="name">{{ elemStyles.text }}</textarea>
     <ng-container *ngIf="!form.get(name)?.valid && validationWindow">
@@ -25,7 +25,7 @@
 
   <ng-container *ngSwitchCase="EBuilderElements.Select">
     <div class="select">
-      <select [attr.data-id]="elemId" class="element-form" [name]="elemStyles.name" id="'select'+elemId"
+      <select [attr.data-id]="elementId" class="element-form" [name]="elemStyles.name" id="'select'+elemId"
         [style]="elemStyles.styles" [required]="elemStyles.required" (focusout)="focusOut()" [formControlName]="name">
         <option value="" selected disabled>{{ elemStyles.defaultOption }}</option>
         <option *ngFor="let option of elemStyles.options" [value]="option">{{ option }}
@@ -37,10 +37,10 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="EBuilderElements.CheckBox">
-    <input [attr.data-id]="elemId" class="element-form" type="checkbox" [name]="elemStyles.name"
-      [id]="'checkbox'+elemId" [style]="elemStyles.styles" [value]="elemStyles.value" (focusout)="focusOut()"
+    <input [attr.data-id]="elementId" class="element-form" type="checkbox" [name]="elemStyles.name"
+      [id]="'checkbox'+elementId" [style]="elemStyles.styles" [value]="elemStyles.value" (focusout)="focusOut()"
       [formControlName]="name">
-    <label [for]="'checkbox'+elemId">{{ elemStyles.label }}</label>
+    <label [for]="'checkbox'+elementId">{{ elemStyles.label }}</label>
     <ng-container *ngIf="!form.get(name)?.valid && validationWindow">
       <p class="validation-message" [ngStyle]="{'color': check}">This elem is {{ form.get(name)?.status }}</p>
     </ng-container>

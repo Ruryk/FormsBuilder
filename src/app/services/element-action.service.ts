@@ -4,9 +4,9 @@ import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
-import { SetTargetElemAction } from 'src/app/reducers/target/target.actions';
+import { SetTargetElementAction } from 'src/app/reducers/target/target.actions';
 import { EBuilderElements } from 'src/app/data/enums';
-import { DeleteElemAction, SetNewElemAction } from 'src/app/reducers/elemStyles/elemStyles.actions';
+import { DeleteElementAction, SetNewElementAction } from 'src/app/reducers/element-styles/element-styles.actions';
 import { IStateReducers } from 'src/app/reducers';
 import { IBtnStatus, IListElements } from 'src/app/data/interfaces';
 import { FormGroup } from '@angular/forms';
@@ -38,7 +38,7 @@ export class ElemActionService {
   ): void {
     elem.parentNode.classList.remove('active-elem-form');
     deleteBtnStatus.deleteElemBtnStatus = true;
-    this.store.dispatch(new SetTargetElemAction({ id: null }));
+    this.store.dispatch(new SetTargetElementAction({ id: null }));
   }
 
   addClassToTargetElem(
@@ -59,7 +59,7 @@ export class ElemActionService {
       elem.parentNode.classList.add('active-elem-form');
     }
     deleteBtnStatus.deleteElemBtnStatus = false;
-    this.store.dispatch(new SetTargetElemAction({ id: Number(elem.dataset.id) }));
+    this.store.dispatch(new SetTargetElementAction({ id: Number(elem.dataset.id) }));
   }
 
   deleteElem(
@@ -72,11 +72,14 @@ export class ElemActionService {
     const elemId = Number(elem.dataset.id);
     const containerElem = elem.parentNode;
 
+    console.log(elem.firstElementChild.getAttribute('ng-reflect-name'));
+
+
     formGroup.removeControl(`${elem.firstElementChild.getAttribute('ng-reflect-name')}`);
 
     containerElem.remove();
     this.deleteElemFromBasket(elemId, basket, deleteBtnStatus);
-    this.store.dispatch(new SetTargetElemAction({ id: null }));
+    this.store.dispatch(new SetTargetElementAction({ id: null }));
   }
 
   addElemToBasket(
@@ -92,7 +95,7 @@ export class ElemActionService {
         id: this.counterID
       };
       basket[containerID].push(data);
-      this.store.dispatch(new SetNewElemAction({ type: data.character, id: this.counterID }));
+      this.store.dispatch(new SetNewElementAction({ type: data.character, id: this.counterID }));
       this.counterID++;
     } else {
       message.next('Maximum 4 elements in row!');
@@ -108,7 +111,7 @@ export class ElemActionService {
     basket.forEach((_, i) => {
       basket[i] = basket[i].filter(el => el.id !== elemId);
     });
-    this.store.dispatch(new DeleteElemAction({ id: elemId }));
+    this.store.dispatch(new DeleteElementAction({ id: elemId }));
     deleteBtnStatus.deleteElemBtnStatus = true;
   }
 }

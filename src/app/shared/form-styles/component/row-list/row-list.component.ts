@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { EStylesNames } from 'src/app/data/enums';
-import { SetStyleRowAction } from 'src/app/reducers/rowStyles/rowStyles.actions';
+import { SetStyleRowAction } from 'src/app/reducers/row-styles/row-styles.actions';
 import { getListParamsRowForId, IStateReducers } from 'src/app/reducers';
 import { IListRowStyleState } from 'src/app/data/interfaces';
 
