@@ -4,39 +4,34 @@ import { IListRowStyleState } from 'src/app/data/interfaces';
 import { CPxNamesStyles, CListRowStyles } from 'src/app/data/constantes';
 
 export const stylesNodeRow = 'rowStyles';
+const defaultId: number = 0;
 
-const initialState: IListRowStyleState[] = [
-   {
-      id: 0,
-      styles: CListRowStyles
-   }
-];
+const rowState: IListRowStyleState = {
+   [defaultId]: CListRowStyles
+};
 
-export const rowStyleReducer = (state = initialState, action: StyleActions) => {
+export const rowStyleReducer = (state = rowState, action: StyleActions) => {
    switch (action.type) {
       case styleActionsType.setNewRow:
-         return [
+         return {
             ...state,
-            {
-               id: action.payload.id,
-               styles: CListRowStyles
+            [action.payload.id]: {
+               ...CListRowStyles,
+               id: action.payload.id
             }
-         ];
+         };
       case styleActionsType.setParamRow:
-         return state.map(el => {
-            if (el.id === action.payload.id) {
-               return {
-                  id: action.payload.id,
-                  styles: {
-                     ...el.styles,
-                     [action.payload.param]: CPxNamesStyles.includes(action.payload.param) ? action.payload.value + 'px' : action.payload.value
-                  }
-               }
+         return {
+            ...state,
+            [action.payload.id]: {
+               ...state[action.payload.id],
+               [action.payload.param]: CPxNamesStyles.includes(action.payload.param) ? action.payload.value + 'px' : action.payload.value
             }
-            return el;
-         });
+         };
       case styleActionsType.deleteRow:
-         return state.filter(el => el.id !== action.payload.id);
+         const newState = { ...state };
+         delete newState[action.payload.id];
+         return newState;
       default:
          return state;
    }

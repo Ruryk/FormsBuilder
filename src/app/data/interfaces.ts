@@ -27,8 +27,7 @@ export interface IListElements {
 }
 
 export interface IListElementStyleState {
-  id: number;
-  params: {
+  id?: {
     character: string;
     placeholder?: string;
     required?: boolean;
@@ -50,17 +49,17 @@ export interface IListElementStyleState {
       fontWeight?: string;
       backgroundColor?: string;
     }
-  };
+  }
 }
 
 export interface IListRowStyleState {
-  id: number;
-  styles: {
+  id?: {
+    id: number;
     minHeight: string;
     flexDirection: string;
     justifyContent: string;
     alignItems: string;
-  };
+  }
 }
 
 export interface IListFormStyleState {

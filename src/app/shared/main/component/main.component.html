@@ -1,7 +1,7 @@
 <div class="container">
   <div class="container__item" cdkDropListGroup>
     <div>
-      <app-form-builder class="item__component" [listStylesElement]="listStylesElement"
+      <app-form-builder class="item__component" [listStylesElement]="listStylesElement$ | ngrxPush"
         [listStylesForm]="listStylesForm$ | ngrxPush" [listStylesRow]="listStylesRow$ | ngrxPush">
       </app-form-builder>
     </div>

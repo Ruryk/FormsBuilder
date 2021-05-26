@@ -24,7 +24,7 @@ export class RowListComponent implements OnChanges {
   constructor(private store: Store<IStateReducers>) { }
 
   ngOnChanges(): void {
-    this.listStylesRow$ = this.store.pipe(select(getListParamsRowForId, { id: this.targetRowId })).pipe(map(i => i[0]));
+    this.listStylesRow$ = this.store.pipe(select(getListParamsRowForId, { id: this.targetRowId }));
   }
 
   onChangeRowStyle({ target }: any): void {

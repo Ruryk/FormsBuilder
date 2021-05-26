@@ -4,7 +4,7 @@ import { CPxNamesStyles } from 'src/app/data/constantes';
 
 export const stylesNodeForm = 'formStyles';
 
-const initialState: IListFormStyleState = {
+const formState: IListFormStyleState = {
    borderStyle: '',
    borderColor: '',
    fontSize: '14px',
@@ -14,7 +14,7 @@ const initialState: IListFormStyleState = {
    width: '1000px'
 };
 
-export const formStyleReducer = (state = initialState, { type, payload }: StyleActions) => {
+export const formStyleReducer = (state = formState, { type, payload }: StyleActions) => {
    switch (type) {
       case styleActionsType.setParamForm:
          return {

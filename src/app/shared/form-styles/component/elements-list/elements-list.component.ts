@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { SetStyleElementAction, SetParamElementAction } from 'src/app/reducers/element-styles/element-styles.actions';
 import { EBuilderElements, EParamsNames, EStylesNames } from 'src/app/data/enums';
 import { CNamesStyles } from 'src/app/data/constantes';
-import { getListParamsElemForId, IStateReducers } from 'src/app/reducers';
+import { getListParamsElementForId, IStateReducers } from 'src/app/reducers';
 
 import { IListElementStyleState } from 'src/app/data/interfaces';
 
@@ -29,7 +28,7 @@ export class ElementsListComponent implements OnChanges {
   constructor(private store: Store<IStateReducers>) { }
 
   ngOnChanges(): void {
-    this.listStyles$ = this.store.pipe(select(getListParamsElemForId, { id: this.targetElementId })).pipe(map(i => i[0]));
+    this.listStyles$ = this.store.pipe(select(getListParamsElementForId, { id: this.targetElementId }));
   }
 
   onChange({ target }: any): void {

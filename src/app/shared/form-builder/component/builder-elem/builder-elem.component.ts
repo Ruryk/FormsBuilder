@@ -45,7 +45,7 @@ export class BuilderElemComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(): void {
-    this.elementStyles = this.listStylesElement.find(el => el.id === this.elementId).params;
+    this.elementStyles = this.listStylesElement[this.elementId];
     if (this.checkValidation) {
       this.validationWindow = true;
     }

@@ -5,7 +5,7 @@
         <th>Parameter</th>
         <th>Value</th>
       </tr>
-      <ng-container *ngFor="let item of (listStylesRow$ | ngrxPush).styles | keyvalue">
+      <ng-container *ngFor="let item of (listStylesRow$ | ngrxPush) | keyvalue">
         <ng-container [ngSwitch]="item.key">
 
           <tr *ngSwitchCase="EStylesNames.MinHeight">

@@ -16,9 +16,9 @@ import * as rowStylesSelector from 'src/app/reducers/row-styles/row-styles.selec
 import * as authSelector from 'src/app/reducers/auth/auth.selectors';
 
 export interface IStateReducers {
-   [stylesNodeElement]: IListElementStyleState[];
+   [stylesNodeElement]: IListElementStyleState;
    [stylesNodeForm]: IListFormStyleState;
-   [stylesNodeRow]: IListRowStyleState[];
+   [stylesNodeRow]: IListRowStyleState;
    [authNode]: IUserAuth;
    [targetNode]: ITargetId;
 }
@@ -31,7 +31,7 @@ export const reducers: ActionReducerMap<IStateReducers> = {
    [targetNode]: targetReducer
 };
 
-export const getListStylesElemState = (state: IStateReducers) => state[stylesNodeElement];
+export const getListStylesElementState = (state: IStateReducers) => state[stylesNodeElement];
 export const getListStylesFormState = (state: IStateReducers) => state[stylesNodeForm];
 export const getListStylesRowState = (state: IStateReducers) => state[stylesNodeRow];
 export const getAuthState = (state: IStateReducers) => state[authNode];
@@ -70,13 +70,13 @@ export const getListParamsRows = createSelector(
 );
 
 // Elements Styles Selectors
-export const getListParamsElemForId = createSelector(
-   getListStylesElemState,
-   elementStylesSelector.selectParamsElemForId
+export const getListParamsElementForId = createSelector(
+   getListStylesElementState,
+   elementStylesSelector.selectParamsElementForId
 );
 export const getListParamsElements = createSelector(
-   getListStylesElemState,
-   elementStylesSelector.selectParamsElem
+   getListStylesElementState,
+   elementStylesSelector.selectParamsElement
 );
 
 export const metaReducers: MetaReducer<IStateReducers>[] = !environment.production ? [] : [];

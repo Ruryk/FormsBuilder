@@ -110,6 +110,7 @@ export const CListStandartParams = {
 };
 
 export const CListRowStyles = {
+  id: 0,
   minHeight: '50px',
   flexDirection: 'row',
   justifyContent: 'space-around',

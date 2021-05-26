@@ -1,5 +1,5 @@
 import { IListElementStyleState } from 'src/app/data/interfaces';
 
-export const selectParamsElemForId = (state: IListElementStyleState[], props: any): any => state.filter(el => el.id === props.id);
+export const selectParamsElementForId = (state: IListElementStyleState, props: any): any => state[props.id];
 
-export const selectParamsElem = (state: IListElementStyleState[]): any => state;
+export const selectParamsElement = (state: IListElementStyleState): any => state;
