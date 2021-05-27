@@ -3,16 +3,13 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 
 import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
-// import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 
 import { BuilderElemComponent } from 'src/app/shared/form-builder/component/builder-elem/builder-elem.component';
 import { IListRowStyleState, IListElementStyleState, IListFormStyleState, IListElements, IBtnStatus } from 'src/app/data/interfaces';
-// import { IStateReducers } from 'src/app/reducers';
 import { RowActionService } from 'src/app/services/row-action.service';
 import { ElemActionService } from 'src/app/services/element-action.service';
 import { EBuilderElements } from 'src/app/data/enums';
-import { identifierModuleUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-form-builder',
@@ -35,9 +32,9 @@ export class FormBuilderComponent implements OnInit {
 
   public errorMessage: BehaviorSubject<string>;
 
-  @Input() listStylesElement: IListElementStyleState[];
-  @Input() listStylesForm: IListFormStyleState[];
-  @Input() listStylesRow: IListRowStyleState[];
+  @Input() listStylesElement: IListElementStyleState;
+  @Input() listStylesForm: IListFormStyleState;
+  @Input() listStylesRow: IListRowStyleState;
 
   @ViewChildren('exampleList') listRows: QueryList<ElementRef>;
   @ViewChildren(BuilderElemComponent, { read: ElementRef }) listElems: QueryList<ElementRef>;
@@ -54,7 +51,6 @@ export class FormBuilderComponent implements OnInit {
   }
 
   constructor(
-    // private store: Store<IStateReducers>,
     private rowAction: RowActionService,
     private elemAction: ElemActionService,
     private fb: FormBuilder
@@ -82,11 +78,11 @@ export class FormBuilderComponent implements OnInit {
     }
   }
 
-  getExampleListStyle(id: number): any {
+  getExampleListStyle(id: number): IListRowStyleState {
     return this.listStylesRow[id];
   }
 
-  getRowID(order: string): number {
+  getRowId(order: string): number {
     return Object.keys(this.listStylesRow)[order];
   }
 
@@ -148,7 +144,7 @@ export class FormBuilderComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<any[]>): void {
-    const containerID = Number(event.container.element.nativeElement.dataset.position);
+    const containerID: number = Number(event.container.element.nativeElement.dataset.position);
     if (event.previousContainer === event.container) {
       moveItemInArray(this.basket[containerID], event.previousIndex, event.currentIndex);
     } else {

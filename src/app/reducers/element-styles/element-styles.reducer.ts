@@ -35,7 +35,7 @@ export const styleReducer = (state = elementState, action: StyleActions) => {
             }
          }
       case styleActionsType.deleteElement:
-         const newState = { ...state };
+         let newState = { ...state };
          delete newState[action.payload.id];
          return newState;
       default:

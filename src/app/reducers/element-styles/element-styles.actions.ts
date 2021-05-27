@@ -6,6 +6,7 @@ export enum styleActionsType {
    setParamElement = '[ELEM-STYLE] setParamElem',
    deleteElement = '[ELEM-STYLE] deleteElem'
 }
+
 export class SetNewElementAction implements Action {
    readonly type = styleActionsType.setNewElement;
    constructor(public payload: { type: string, id: number }) { }

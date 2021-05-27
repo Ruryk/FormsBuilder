@@ -20,7 +20,7 @@ import { EBuilderElements } from 'src/app/data/enums';
 
 export class BuilderElemComponent implements OnChanges, OnInit {
 
-  @Input() listStylesElement: IListElementStyleState[];
+  @Input() listStylesElement: IListElementStyleState;
   @Input() elementId: number;
   @Input() elementCharacter: string;
 

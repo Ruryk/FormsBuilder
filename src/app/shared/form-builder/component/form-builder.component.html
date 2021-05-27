@@ -16,8 +16,8 @@
     <form action="" [style]="listStylesForm" [formGroup]="formGroup" (submit)="submitForm($event)">
       <ng-container *ngFor="let item of basket;let i = index">
         <div #exampleList cdkDropListGroup cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="basket"
-          class="example-list" (cdkDropListDropped)="drop($event)" [id]="getRowID(i)"
-          [style]="getExampleListStyle(getRowID(i))" [attr.data-position]="i">
+          class="example-list" (cdkDropListDropped)="drop($event)" [id]="getRowId(i)"
+          [style]="getExampleListStyle(getRowId(i))" [attr.data-position]="i">
 
           <div class="example-box" *ngFor="let item of basket[i]" cdkDrag cdkDropList>
 
