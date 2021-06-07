@@ -9,7 +9,7 @@ import { getStatusAuth, IStateReducers } from 'src/app/reducers';
 import { LogInSuccessAction, LogInFailtureAction, LogOutAction } from 'src/app/reducers/auth/auth.actions';
 import { IUser } from 'src/app/data/interfaces';
 import { ChttpOptions } from 'src/app/data/constantes';
-import { server } from 'src/app/data/constantes';
+import { serverConnectionString } from 'src/app/data/constantes';
 import { takeUntil } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
@@ -51,7 +51,7 @@ export class AuthenticationService implements OnDestroy {
    }
 
    login(user: IUser, message: BehaviorSubject<string>, item: SwalComponent): void {
-      const response = this.http.post<IUser>(`${server}/auth/login`, user, ChttpOptions);
+      const response = this.http.post<IUser>(`${serverConnectionString}/auth/login`, user, ChttpOptions);
       response.subscribe(
          (data) => this.responseHandlerSuccess(data, user),
          (error) => this.responseHandlerError(error, user, message, item)

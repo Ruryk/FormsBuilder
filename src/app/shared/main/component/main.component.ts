@@ -1,14 +1,8 @@
-import {
-  Component, ChangeDetectionStrategy,
-  // OnDestroy, OnInit 
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy, } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {
-  Observable,
-  //  Subject 
-} from 'rxjs';
-// import { takeUntil } from 'rxjs/operators';
+import { Observable, } from 'rxjs';
 
+import { IListElementStyleState, IListFormStyleState, IListRowStyleState } from 'src/app/data/interfaces';
 import { getListParamsElements, getListParamsForm, getListParamsRows, getTargetElement, IStateReducers, getTargetRow } from 'src/app/reducers';
 
 @Component({
@@ -18,28 +12,14 @@ import { getListParamsElements, getListParamsForm, getListParamsRows, getTargetE
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class MainComponent
-// implements OnInit, OnDestroy 
-{
-
-  // private unsubscribe$ = new Subject<void>();
+export class MainComponent {
 
   constructor(private store: Store<IStateReducers>) { }
 
-  public listStylesElement$: Observable<string> = this.store.select(getListParamsElements);
-  public listStylesRow$: Observable<string> = this.store.select(getListParamsRows);
-  public listStylesForm$: Observable<string> = this.store.select(getListParamsForm);
+  public listStylesElement$: Observable<IListElementStyleState> = this.store.select(getListParamsElements);
+  public listStylesRow$: Observable<IListRowStyleState> = this.store.select(getListParamsRows);
+  public listStylesForm$: Observable<IListFormStyleState> = this.store.select(getListParamsForm);
   public targetElementId$: Observable<number> = this.store.select(getTargetElement);
   public targetRowId$: Observable<number> = this.store.select(getTargetRow);
 
-  // public listStylesElement;
-
-  // ngOnInit(): void {
-  // this.listStylesElement$.pipe(takeUntil(this.unsubscribe$)).subscribe(subs => this.listStylesElement = subs);
-  // }
-
-  // ngOnDestroy(): void {
-  // this.unsubscribe$.next();
-  // this.unsubscribe$.complete();
-  // }
 }

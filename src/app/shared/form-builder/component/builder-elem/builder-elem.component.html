@@ -19,7 +19,7 @@
       [placeholder]="elementStyles.placeholder" (focusout)="focusOut()"
       [formControlName]="name">{{ elementStyles.text }}</textarea>
     <ng-container *ngIf="!form.get(name)?.valid && validationWindow">
-      <p class="validation-message" [ngStyle]="{'color': check}">This elem is {{ form.get(name)?.status }}</p>
+      <p class="validation-message" [ngStyle]="{'color': check}">This element is {{ form.get(name)?.status }}</p>
     </ng-container>
   </ng-container>
 
@@ -33,7 +33,7 @@
       </select>
     </div>
     <ng-container *ngIf="!form.get(name)?.valid && validationWindow">
-      <p class="validation-message" [ngStyle]="{'color': check}">This elem is {{ form.get(name)?.status }}</p>
+      <p class="validation-message" [ngStyle]="{'color': check}">This element is {{ form.get(name)?.status }}</p>
     </ng-container>
   </ng-container>
 
@@ -43,7 +43,7 @@
       [formControlName]="name">
     <label [for]="'checkbox'+elementId">{{ elementStyles.label }}</label>
     <ng-container *ngIf="!form.get(name)?.valid && validationWindow">
-      <p class="validation-message" [ngStyle]="{'color': check}">This elem is {{ form.get(name)?.status }}</p>
+      <p class="validation-message" [ngStyle]="{'color': check}">This element is {{ form.get(name)?.status }}</p>
     </ng-container>
   </ng-container>
 </ng-container>

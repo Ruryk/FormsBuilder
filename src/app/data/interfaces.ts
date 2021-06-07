@@ -4,7 +4,7 @@ export interface ITargetId {
 }
 
 export interface IBtnStatus {
-  deleteElemBtnStatus: boolean;
+  deleteElementBtnStatus: boolean;
   deleteRowBtnStatus: boolean;
 }
 

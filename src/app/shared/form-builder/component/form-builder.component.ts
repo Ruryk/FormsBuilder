@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 import { BuilderElemComponent } from 'src/app/shared/form-builder/component/builder-elem/builder-elem.component';
 import { IListRowStyleState, IListElementStyleState, IListFormStyleState, IListElements, IBtnStatus } from 'src/app/data/interfaces';
 import { RowActionService } from 'src/app/services/row-action.service';
-import { ElemActionService } from 'src/app/services/element-action.service';
+import { ElementActionService } from 'src/app/services/element-action.service';
 import { EBuilderElements } from 'src/app/data/enums';
 
 @Component({
@@ -20,13 +20,13 @@ import { EBuilderElements } from 'src/app/data/enums';
 
 export class FormBuilderComponent implements OnInit {
   public formGroup: FormGroup;
-  public formElemCounter: number = 0;
+  public formElementCounter: number = 0;
   public checkValidation: boolean = false;
 
   public basket: Array<IListElements[]> = [[]];
 
   public deleteBtnStatus: IBtnStatus = {
-    deleteElemBtnStatus: true,
+    deleteElementBtnStatus: true,
     deleteRowBtnStatus: true
   };
 
@@ -37,22 +37,22 @@ export class FormBuilderComponent implements OnInit {
   @Input() listStylesRow: IListRowStyleState;
 
   @ViewChildren('exampleList') listRows: QueryList<ElementRef>;
-  @ViewChildren(BuilderElemComponent, { read: ElementRef }) listElems: QueryList<ElementRef>;
+  @ViewChildren(BuilderElemComponent, { read: ElementRef }) listElements: QueryList<ElementRef>;
 
   @ViewChild('popupError') popupError: SwalComponent;
 
   @HostListener('click', ['$event.target'])
-  onClick(elem: HTMLElement): void {
-    if (elem.classList.contains('example-list')) {
-      this.setActiveRow(elem);
-    } else if (elem.classList.contains('element-form')) {
-      this.setActiveElem(elem);
+  onClick(element: HTMLElement): void {
+    if (element.classList.contains('example-list')) {
+      this.setActiveRow(element);
+    } else if (element.classList.contains('element-form')) {
+      this.setActiveElement(element);
     }
   }
 
   constructor(
     private rowAction: RowActionService,
-    private elemAction: ElemActionService,
+    private elementAction: ElementActionService,
     private fb: FormBuilder
   ) {
     this.errorMessage = new BehaviorSubject('');
@@ -108,39 +108,39 @@ export class FormBuilderComponent implements OnInit {
   /**
    * Elem Actions ===================================================================
    */
-  setActiveElem(elem: HTMLElement): void {
-    this.elemAction.setActiveElem(elem, this.deleteBtnStatus, this.listElems);
+  setActiveElement(element: HTMLElement): void {
+    this.elementAction.setActiveElement(element, this.deleteBtnStatus, this.listElements);
   }
 
-  deleteElem(): void {
-    this.elemAction.deleteElem(this.basket, this.listElems, this.deleteBtnStatus, this.formGroup);
+  deleteElement(): void {
+    this.elementAction.deleteElem(this.basket, this.listElements, this.deleteBtnStatus, this.formGroup);
 
     this.checkValidation = false;
   }
 
   addElemToBasket(event: CdkDragDrop<any[]>, containerID: number): void {
-    this.elemAction.addElemToBasket(event, this.basket, containerID, this.errorMessage, this.popupError);
+    this.elementAction.addElemToBasket(event, this.basket, containerID, this.errorMessage, this.popupError);
   }
 
   addControl(character: string): void {
     switch (character) {
       case EBuilderElements.Button:
-        this.formGroup.addControl(`name-${this.formElemCounter}`, new FormControl(null));
+        this.formGroup.addControl(`name-${this.formElementCounter}`, new FormControl(null));
         break;
 
       case EBuilderElements.Select:
-        this.formGroup.addControl(`name-${this.formElemCounter}`, new FormControl(null, [Validators.required]));
+        this.formGroup.addControl(`name-${this.formElementCounter}`, new FormControl(null, [Validators.required]));
         break;
 
       case EBuilderElements.CheckBox:
-        this.formGroup.addControl(`name-${this.formElemCounter}`, new FormControl(null, [Validators.required]));
+        this.formGroup.addControl(`name-${this.formElementCounter}`, new FormControl(null, [Validators.required]));
         break;
 
       default:
-        this.formGroup.addControl(`name-${this.formElemCounter}`, new FormControl(null, [Validators.minLength(2), Validators.required]));
+        this.formGroup.addControl(`name-${this.formElementCounter}`, new FormControl(null, [Validators.minLength(2), Validators.required]));
         break;
     }
-    this.formElemCounter++;
+    this.formElementCounter++;
   }
 
   drop(event: CdkDragDrop<any[]>): void {

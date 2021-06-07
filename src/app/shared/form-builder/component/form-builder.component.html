@@ -2,7 +2,8 @@
 <div>
   <div class="control-form">
     <button mat-raised-button color="primary" (click)="addRow()">Add Row</button>
-    <button mat-raised-button color="warn" (click)="deleteElem()" [disabled]="deleteBtnStatus.deleteElemBtnStatus">
+    <button mat-raised-button color="warn" (click)="deleteElement()"
+      [disabled]="deleteBtnStatus.deleteElementBtnStatus">
       Delete
       Element
     </button>
@@ -28,7 +29,6 @@
             </app-builder-elem>
 
           </div>
-
         </div>
       </ng-container>
     </form>

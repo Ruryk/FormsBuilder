@@ -1,5 +1,5 @@
 import { IListRowStyleState } from 'src/app/data/interfaces';
 
-export const selectParamsRowForId = (state: IListRowStyleState, props: any): any => state[props.id];
+export const selectParamsRowForId = (state: IListRowStyleState, props: { id: number }): IListRowStyleState => state[props.id];
 
-export const selectParamsRow = (state: IListRowStyleState): any => state;
+export const selectParamsRow = (state: IListRowStyleState): IListRowStyleState => state;

@@ -14,13 +14,13 @@ import { FormGroup } from '@angular/forms';
 @Injectable({
   providedIn: 'root'
 })
-export class ElemActionService {
+export class ElementActionService {
 
   public counterID: number = 0;
 
   constructor(private store: Store<IStateReducers>) { }
 
-  setActiveElem(
+  setActiveElement(
     elem: any,
     deleteBtnStatus: IBtnStatus,
     listElems: QueryList<ElementRef>
@@ -37,7 +37,7 @@ export class ElemActionService {
     deleteBtnStatus: IBtnStatus
   ): void {
     elem.parentNode.classList.remove('active-elem-form');
-    deleteBtnStatus.deleteElemBtnStatus = true;
+    deleteBtnStatus.deleteElementBtnStatus = true;
     this.store.dispatch(new SetTargetElementAction({ id: null }));
   }
 
@@ -58,7 +58,7 @@ export class ElemActionService {
       });
       elem.parentNode.classList.add('active-elem-form');
     }
-    deleteBtnStatus.deleteElemBtnStatus = false;
+    deleteBtnStatus.deleteElementBtnStatus = false;
     this.store.dispatch(new SetTargetElementAction({ id: Number(elem.dataset.id) }));
   }
 
@@ -109,6 +109,6 @@ export class ElemActionService {
       basket[i] = basket[i].filter(el => el.id !== elemId);
     });
     this.store.dispatch(new DeleteElementAction({ id: elemId }));
-    deleteBtnStatus.deleteElemBtnStatus = true;
+    deleteBtnStatus.deleteElementBtnStatus = true;
   }
 }
