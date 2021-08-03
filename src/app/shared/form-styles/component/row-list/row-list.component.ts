@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { EStylesNames } from 'src/app/data/enums';
-import { SetStyleRowAction } from 'src/app/reducers/rowStyles/rowStyles.actions';
+import { SetStyleRowAction } from 'src/app/reducers/row-styles/row-styles.actions';
 import { getListParamsRowForId, IStateReducers } from 'src/app/reducers';
 import { IListRowStyleState } from 'src/app/data/interfaces';
 
@@ -19,12 +19,12 @@ export class RowListComponent implements OnChanges {
 
   public EStylesNames = EStylesNames;
 
-  public listStylesRow: Observable<IListRowStyleState>;
+  public listStylesRow$: Observable<IListRowStyleState>;
 
   constructor(private store: Store<IStateReducers>) { }
 
   ngOnChanges(): void {
-    this.listStylesRow = this.store.pipe(select(getListParamsRowForId, { id: this.targetRowId })).pipe(map(i => i[0]));
+    this.listStylesRow$ = this.store.pipe(select(getListParamsRowForId, { id: this.targetRowId }));
   }
 
   onChangeRowStyle({ target }: any): void {

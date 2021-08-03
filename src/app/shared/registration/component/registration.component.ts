@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
 import { UserService } from 'src/app/services/user.service';
-import { MyErrorStateMatcher } from 'src/app/services/errorMatcher.service';
+import { MyErrorStateMatcher } from 'src/app/services/error-matcher.service';
 
 @Component({
   selector: 'app-registration',
@@ -39,7 +39,7 @@ export class RegistrationComponent {
     event.preventDefault();
     const email = event.target[0].value;
     const pass = event.target[1].value;
-    this.userService.registration({ email: email, password: pass }, this.errorMessage, this.popupError);
+    this.userService.register({ email, password: pass }, this.errorMessage, this.popupError);
   }
 
 }

@@ -1,10 +1,10 @@
 export interface ITargetId {
   targetRowId: number;
-  targetElemId: number;
+  targetElementId: number;
 }
 
 export interface IBtnStatus {
-  deleteElemBtnStatus: boolean;
+  deleteElementBtnStatus: boolean;
   deleteRowBtnStatus: boolean;
 }
 
@@ -26,9 +26,8 @@ export interface IListElements {
   text?: string;
 }
 
-export interface IListElemStyleState {
-  id: number;
-  params: {
+export interface IListElementStyleState {
+  id?: {
     character: string;
     placeholder?: string;
     required?: boolean;
@@ -50,17 +49,17 @@ export interface IListElemStyleState {
       fontWeight?: string;
       backgroundColor?: string;
     }
-  };
+  }
 }
 
 export interface IListRowStyleState {
-  id: number;
-  styles: {
+  id?: {
+    id: number;
     minHeight: string;
     flexDirection: string;
     justifyContent: string;
     alignItems: string;
-  };
+  }
 }
 
 export interface IListFormStyleState {

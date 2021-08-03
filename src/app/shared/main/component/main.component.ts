@@ -1,8 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Component, ChangeDetectionStrategy, } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable, } from 'rxjs';
 
-import { getListParamsElems, getListParamsForm, getListParamsRows, getTargetElem, IStateReducers, getTargetRow } from 'src/app/reducers';
+import { IListElementStyleState, IListFormStyleState, IListRowStyleState } from 'src/app/data/interfaces';
+import { getListParamsElements, getListParamsForm, getListParamsRows, getTargetElement, IStateReducers, getTargetRow } from 'src/app/reducers';
 
 @Component({
   selector: 'app-main',
@@ -11,21 +12,14 @@ import { getListParamsElems, getListParamsForm, getListParamsRows, getTargetElem
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class MainComponent implements OnInit {
+export class MainComponent {
 
-  constructor(
-    private store: Store<IStateReducers>
-  ) { }
+  constructor(private store: Store<IStateReducers>) { }
 
-  public listStylesElem$: Observable<string> = this.store.select(getListParamsElems);
-  public listStylesRow$: Observable<string> = this.store.pipe(select(getListParamsRows));
-  public listStylesForm$: Observable<string> = this.store.pipe(select(getListParamsForm));
-  public targetElemId: Observable<number> = this.store.pipe(select(getTargetElem));
-  public targetRowId: Observable<number> = this.store.pipe(select(getTargetRow));
+  public listStylesElement$: Observable<IListElementStyleState> = this.store.select(getListParamsElements);
+  public listStylesRow$: Observable<IListRowStyleState> = this.store.select(getListParamsRows);
+  public listStylesForm$: Observable<IListFormStyleState> = this.store.select(getListParamsForm);
+  public targetElementId$: Observable<number> = this.store.select(getTargetElement);
+  public targetRowId$: Observable<number> = this.store.select(getTargetRow);
 
-  public listStylesElem = [];
-
-  ngOnInit(): void {
-    this.listStylesElem$.subscribe(subs => this.listStylesElem[0] = subs);
-  }
 }

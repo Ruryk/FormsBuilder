@@ -1,11 +1,11 @@
-<div class="styles-container" *ngIf="(listStylesRow|ngrxPush)">
+<div class="styles-container" *ngIf="(listStylesRow$ | ngrxPush)">
   <table>
     <tbody>
       <tr>
         <th>Parameter</th>
         <th>Value</th>
       </tr>
-      <ng-container *ngFor="let item of (listStylesRow|ngrxPush).styles | keyvalue">
+      <ng-container *ngFor="let item of (listStylesRow$ | ngrxPush) | keyvalue">
         <ng-container [ngSwitch]="item.key">
 
           <tr *ngSwitchCase="EStylesNames.MinHeight">
@@ -61,6 +61,6 @@
     </tbody>
   </table>
 </div>
-<div *ngIf="!(listStylesRow|ngrxPush)">
+<div *ngIf="!(listStylesRow$ | ngrxPush)">
   Select Active Elem
 </div>

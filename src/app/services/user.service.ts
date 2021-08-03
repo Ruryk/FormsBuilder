@@ -9,6 +9,7 @@ import { IUser } from 'src/app/data/interfaces';
 import { ChttpOptions } from 'src/app/data/constantes';
 import { RegisterSuccessAction, RegisterFailtureAction } from 'src/app/reducers/auth/auth.actions';
 import { IStateReducers } from 'src/app/reducers';
+import { serverConnectionString } from 'src/app/data/constantes';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -32,8 +33,8 @@ export class UserService {
       this.router.navigate(['/registration']);
    }
 
-   registration(user: IUser, message: BehaviorSubject<string>, item: SwalComponent): any {
-      const response = this.http.post<IUser>(`http://localhost:3000/auth/register`, user, ChttpOptions);
+   register(user: IUser, message: BehaviorSubject<string>, item: SwalComponent): void {
+      const response = this.http.post<IUser>(`${serverConnectionString}/auth/register`, user, ChttpOptions);
       response.subscribe(
          (data) => this.responseHandlerSuccess(data, user),
          (error) => this.responseHandlerError(error, user, message, item)

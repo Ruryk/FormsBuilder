@@ -1,19 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { select, Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
 import { getStatusAuth, IStateReducers } from 'src/app/reducers';
 import { LogInSuccessAction, LogInFailtureAction, LogOutAction } from 'src/app/reducers/auth/auth.actions';
 import { IUser } from 'src/app/data/interfaces';
 import { ChttpOptions } from 'src/app/data/constantes';
+import { serverConnectionString } from 'src/app/data/constantes';
+import { takeUntil } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
-export class AuthenticationService {
+export class AuthenticationService implements OnDestroy {
 
-  public auth: boolean;
+   public auth: boolean;
+
+   private unsubscribe$ = new Subject<void>();
 
    constructor(
       private http: HttpClient,
@@ -23,7 +27,7 @@ export class AuthenticationService {
 
    isLoggedIn(): boolean {
       this.auth = false;
-      this.store.pipe(select(getStatusAuth)).subscribe(sub => this.auth = sub);
+      this.store.pipe(select(getStatusAuth)).pipe(takeUntil(this.unsubscribe$)).subscribe(sub => this.auth = sub);
       return this.auth;
    }
 
@@ -47,10 +51,15 @@ export class AuthenticationService {
    }
 
    login(user: IUser, message: BehaviorSubject<string>, item: SwalComponent): void {
-      const response = this.http.post<IUser>(`http://localhost:3000/auth/login`, user, ChttpOptions);
+      const response = this.http.post<IUser>(`${serverConnectionString}/auth/login`, user, ChttpOptions);
       response.subscribe(
          (data) => this.responseHandlerSuccess(data, user),
          (error) => this.responseHandlerError(error, user, message, item)
       );
+   }
+
+   ngOnDestroy(): void {
+      this.unsubscribe$.next();
+      this.unsubscribe$.complete();
    }
 }

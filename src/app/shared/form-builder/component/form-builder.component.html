@@ -2,7 +2,8 @@
 <div>
   <div class="control-form">
     <button mat-raised-button color="primary" (click)="addRow()">Add Row</button>
-    <button mat-raised-button color="warn" (click)="deleteElem()" [disabled]="deleteBtnStatus.deleteElemBtnStatus">
+    <button mat-raised-button color="warn" (click)="deleteElement()"
+      [disabled]="deleteBtnStatus.deleteElementBtnStatus">
       Delete
       Element
     </button>
@@ -16,20 +17,18 @@
     <form action="" [style]="listStylesForm" [formGroup]="formGroup" (submit)="submitForm($event)">
       <ng-container *ngFor="let item of basket;let i = index">
         <div #exampleList cdkDropListGroup cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="basket"
-          class="example-list" (cdkDropListDropped)="drop($event)" [id]="getRowID(i)"
-          [style]="getExampleListStyle(getRowID(i))" [attr.data-position]="i">
+          class="example-list" (cdkDropListDropped)="drop($event)" [id]="getRowId(i)"
+          [style]="getExampleListStyle(getRowId(i))" [attr.data-position]="i">
 
           <div class="example-box" *ngFor="let item of basket[i]" cdkDrag cdkDropList>
 
             <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
 
-            <app-builder-elem [attr.data-id]="item.id" [form]="formGroup" [formElemCounter]="formElemCounter"
-              [elemCharacter]="item.character" [elemId]="item.id" [listStylesElem]="listStylesElem"
-              [checkValidation]="checkValidation">
+            <app-builder-elem [attr.data-id]="item.id" [form]="formGroup" [elementCharacter]="item.character"
+              [elementId]="item.id" [listStylesElement]="listStylesElement" [checkValidation]="checkValidation">
             </app-builder-elem>
 
           </div>
-
         </div>
       </ng-container>
     </form>

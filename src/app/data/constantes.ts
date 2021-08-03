@@ -1,5 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 
+export const serverConnectionString = "http://localhost:3000";
+
 export const CPxNamesStyles = [
   'width',
   'height',
@@ -106,3 +108,11 @@ export const CListStandartParams = {
     label: 'Checked Me!'
   }
 };
+
+export const CListRowStyles = {
+  id: 0,
+  minHeight: '50px',
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  alignItems: 'center'
+}

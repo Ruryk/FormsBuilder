@@ -17,11 +17,11 @@ export class FormStylesComponent implements OnChanges {
     this.step = index;
   }
 
-  @Input() targetElemId: number;
+  @Input() targetElementId: number;
   @Input() targetRowId: number;
 
   ngOnChanges(changes: any): void {
-    if (changes['targetElemId'] && this.changeCount > 0) {
+    if (changes['targetElementId'] && this.changeCount > 0) {
       this.setStep(2);
     } else if (changes['targetRowId'] && this.changeCount > 0) {
       this.setStep(1);

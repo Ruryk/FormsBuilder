@@ -1,10 +1,10 @@
-import { StyleActions, styleActionsType } from 'src/app/reducers/formStyles/formStyles.actions';
+import { StyleActions, styleActionsType } from 'src/app/reducers/form-styles/form-styles.actions';
 import { IListFormStyleState } from 'src/app/data/interfaces';
 import { CPxNamesStyles } from 'src/app/data/constantes';
 
 export const stylesNodeForm = 'formStyles';
 
-const initialState: IListFormStyleState = {
+const formState: IListFormStyleState = {
    borderStyle: '',
    borderColor: '',
    fontSize: '14px',
@@ -14,7 +14,7 @@ const initialState: IListFormStyleState = {
    width: '1000px'
 };
 
-export const formStyleReducer = (state = initialState, { type, payload }: StyleActions) => {
+export const formStyleReducer = (state = formState, { type, payload }: StyleActions) => {
    switch (type) {
       case styleActionsType.setParamForm:
          return {

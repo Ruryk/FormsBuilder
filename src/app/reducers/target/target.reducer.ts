@@ -3,22 +3,22 @@ import { ITargetId } from 'src/app/data/interfaces';
 
 export const targetNode = 'target';
 
-const initialState: ITargetId = {
+const targetState: ITargetId = {
    targetRowId: null,
-   targetElemId: null
+   targetElementId: null
 };
 
-export const targetReducer = (state = initialState, { type, payload }: TargetActions) => {
+export const targetReducer = (state = targetState, { type, payload }: TargetActions) => {
    switch (type) {
       case targetActionsType.setTargetRow:
          return {
             ...state,
             targetRowId: payload.id
          };
-      case targetActionsType.setTargetElem:
+      case targetActionsType.setTargetElement:
          return {
             ...state,
-            targetElemId: payload.id
+            targetElementId: payload.id
          };
       default:
          return state;
